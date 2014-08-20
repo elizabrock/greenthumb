@@ -78,8 +78,8 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: greenthumb_production
-  username: greenthumb
-  password: <%= ENV['GREENTHUMB_DATABASE_PASSWORD'] %>
+# production:
+#   <<: *default
+#   database: greenthumb_production
+#   username: greenthumb
+#   password: <%= ENV['GREENTHUMB_DATABASE_PASSWORD'] %>
