@@ -1,11 +1,10 @@
 feature "Adding a plant category" do
   scenario "Happy Path" do
-    pending "implementation"
     visit '/'
     click_on "Manage Plant Categories" # index
     click_on "Add Category" # new
     fill_in "Name", with: "Tomatoes"
-    choose "True"
+    check "Edible"
     click_on "Create Category" # create, then index
     page.should have_content("The Tomatoes category has been created.")
     current_path.should == categories_path
@@ -22,6 +21,5 @@ feature "Adding a plant category" do
     click_on "Create Category"
     page.should have_content("Category could not be created.")
     page.should have_error("can't be blank", on: "Name")
-    page.should have_error("must be selected", on: "Edible")
   end
 end
