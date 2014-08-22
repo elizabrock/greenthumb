@@ -2,11 +2,11 @@ feature "Adding a plant category" do
   scenario "Happy Path" do
     pending "implementation"
     visit '/'
-    click_on "Manage Plant Categories"
-    click_on "Add Category"
+    click_on "Manage Plant Categories" # index
+    click_on "Add Category" # new
     fill_in "Name", with: "Tomatoes"
     choose "True"
-    click_on "Create Category"
+    click_on "Create Category" # create, then index
     page.should have_content("The Tomatoes category has been created.")
     current_path.should == categories_path
     within("ul#categories") do
