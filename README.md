@@ -19,11 +19,11 @@ Things you may want to cover:
 
 1. Copy config/database.yml.example to config/database.yml, and make any changes necessary for your database setup.
 
-* Database creation
+* Database creation: `rake db:create:all`
 
-* Database initialization
+* Database initialization: `rake db:migrate`
 
-* How to run the test suite
+* How to run the test suite: `rake`
 
 * Services (job queues, cache servers, search engines, etc.)
 
