@@ -14,7 +14,6 @@ feature "Adding a plant category" do
   end
 
   scenario "skipping filling out the form" do
-    pending "implementation"
     visit '/'
     click_on "Manage Plant Categories"
     click_on "Add Category"
