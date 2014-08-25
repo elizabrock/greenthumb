@@ -10,7 +10,12 @@ class UserSessionsController < ApplicationController
       @user = User.new(params.require(:user).permit(:email, :password))
       @user.valid?
       flash.now[:alert] = "We could not sign you in. Please check your sign in information below."
-      render 'new'
+      render :new
     end
+  end
+
+  def destroy
+    logout
+    redirect_to new_user_session_path
   end
 end
