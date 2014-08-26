@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to categories_path, notice: "The #{@category.name} category has been created."
     else
-      flash.alert = "Category could not be created."
+      flash.now[:alert] = "Category could not be created."
       render :new
     end
   end
