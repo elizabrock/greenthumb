@@ -1,5 +1,10 @@
-= simple_form_for @garden, url: "#" do |f|
-  = f.input :name, label: "Garden Name"
-  = f.input :height
-  = f.input :width
-  -# Skipping the button for now, as we aren't implementing edit
+.left-menu
+  #garden-details
+    = simple_form_for @garden, url: "#" do |f|
+      = f.input :name, label: "Garden Name"
+      = f.input :height
+      = f.input :width
+      -# Skipping the button for now, as we aren't implementing edit
+  #shapes-menu
+
+#garden{ :style => "width: #{ @garden.width * 12 * 5 }px; height: #{ @garden.height * 12 * 5 }px;" }
