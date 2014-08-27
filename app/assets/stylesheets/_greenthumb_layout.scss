@@ -1,0 +1,25 @@
+body {
+  margin: 0.5em;
+}
+
+nav#main, main, footer {
+  @include grid-row();
+}
+
+nav#main {
+  border-bottom: 2px solid $primary-color;
+  margin-bottom: 1em;
+  #logo {
+    $logo-size: 1em;
+    img.logo{
+      max-height: $logo-size; max-width: $logo-size;
+    }
+    img.logo, .title {
+      color: $success-color;
+    }
+  }
+  ul {
+    float: right;
+    list-style-type: none;
+  }
+}
