@@ -21,6 +21,20 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
+  def edit
+    @category = Category.find(params[:id])
+  end
+
+  def update
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+      redirect_to categories_path, notice: "The #{@category.name} category has been updated."
+    else
+      flash.now[:alert] = "Name can't be blank"
+      render :edit
+    end
+  end
+
   protected
 
   def category_params
