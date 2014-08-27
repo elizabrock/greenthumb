@@ -11,7 +11,7 @@
 
 feature "User changes profile email" do
   background do
-    Fabricate(:user, email: "eliza@example.com", password: "password1")
+    user = Fabricate(:user, email: "eliza@example.com", password: "password1")
     login_as user
   end
 
@@ -33,13 +33,13 @@ feature "User changes profile email" do
 
 end
 
-feature "User changes profile passoword" do
+feature "User changes profile password" do
   background do
-    Fabricate(:user, email: "eliza@example.com", password: "password1")
+    user = Fabricate(:user, email: "eliza@example.com", password: "password1")
     login_as user
   end
 
-  scenario "with correct email (Happy Path)" do
+  scenario "with correct password (Happy Path)" do
     click_link "Profile"
     click_link "Edit password"
     fill_in "Password", with: "password2"
@@ -47,7 +47,7 @@ feature "User changes profile passoword" do
     page.should have_content("Profile has been updated.")
   end
 
-  scenario "but left new email blank (Sad Path)" do
+  scenario "but left new password blank (Sad Path)" do
     click_link "Profile"
     click_link "Edit password"
     fill_in "Email", with: ""
