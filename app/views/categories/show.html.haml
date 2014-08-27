@@ -1,4 +1,5 @@
 %h1= @category.name
 - @category.varieties.each do |var|
   %p "#{var.name} - #{var.description}"
+  = button_to "Delete", category_variety_path(@category, var.id), method: :delete
 = link_to "add variety", new_category_variety_path(@category)
