@@ -3,3 +3,5 @@
   = f.input :height
   = f.input :width
   -# Skipping the button for now, as we aren't implementing edit
+
+= button_to("Delete This Garden", @garden, method: :delete, data: { confirm: "Are you sure?" })
