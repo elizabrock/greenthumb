@@ -1,0 +1,2 @@
+Fabricator(:garden) do
+end
