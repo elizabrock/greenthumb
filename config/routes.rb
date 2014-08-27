@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   end
   resources :gardens, only: [:create, :edit]
   resource :user_session, only: [:new, :create, :destroy]
-  resource :user, only: [:new, :create]
+  resource :user, only: [:new, :create] do
+    resource :profile, only: [:show]
+  end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

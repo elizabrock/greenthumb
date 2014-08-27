@@ -17,7 +17,7 @@ feature "User changes profile email" do
 
   scenario "with correct email (Happy Path)" do
     click_link "Profile"
-    click_link "Edit email"
+    current_path.should == user_profile_path
     fill_in "Email", with: "adam@example.com"
     click_button "Save"
     page.should have_content("Profile has been updated.")
@@ -30,8 +30,9 @@ feature "User changes profile email" do
     click_button "Save"
     page.should have_error("Can't be blank.", on: "Email")
   end
-
 end
+
+# are you here yet? THEN COMMIT DAT SON
 
 feature "User changes profile password" do
   background do
@@ -41,6 +42,7 @@ feature "User changes profile password" do
 
   scenario "with correct password (Happy Path)" do
     click_link "Profile"
+    current_path.should == user_profile_path
     click_link "Edit password"
     fill_in "Password", with: "password2"
     click_button "Save"
