@@ -31,6 +31,6 @@ module Greenthumb
       g.fixture_replacement :fabrication
     end
 
-    config.action_mailer.default_url_options = { host: 'greenthumb.com' }
+    config.action_mailer.default_url_options = { host: 'www.greenthumb.com' }
   end
 end
