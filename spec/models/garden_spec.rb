@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Garden, :type => :model do
+  it { should belong_to :user }
+  it { should validate_presence_of :user }
   describe "default values" do
     context "if the garden being created is already populated with values" do
-      let(:garden){ Garden.new(name: "Awesome", height: 3, width: 4) }
+      let(:garden){ Garden.new(name: "Awesome", height: 3, width: 4, user: Fabricate(:user)) }
 
       before do
         garden.save!
@@ -21,7 +23,7 @@ RSpec.describe Garden, :type => :model do
     end
 
     context "if the garden being created has no values set" do
-      let(:garden){ Garden.create! }
+      let(:garden){ Garden.create!(user: Fabricate(:user)) }
 
       it "should have the default height" do
         garden.height.should == 10

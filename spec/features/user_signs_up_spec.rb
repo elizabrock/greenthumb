@@ -16,7 +16,7 @@ feature "Users signs up" do
     fill_in "Email", with: "eliza@example.com"
     fill_in "Password", with: "password1"
     click_button "Create My Account"
-    current_path.should == root_path
+    current_path.should == gardens_path
     page.should have_content("Welcome to greenthumb, eliza@example.com!")
     page.should_not have_content("Sign Up")
     page.should_not have_content("Sign In")
