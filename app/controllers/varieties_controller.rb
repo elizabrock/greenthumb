@@ -16,6 +16,11 @@ class VarietiesController < ApplicationController
     end
   end
 
+  def show
+    @variety = Variety.find(params[:id])
+  end
+
+
   protected
 
   def variety_params
