@@ -2,6 +2,10 @@ class VarietiesController < ApplicationController
 
   before_action :load_category
 
+  def show
+    @variety = Variety.find(params[:id])
+  end
+
   def new
     @variety = Variety.new
   end
