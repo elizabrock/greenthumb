@@ -27,21 +27,21 @@ feature "User creates a new garden" do
   end
 
   scenario "when the user already has a garden" do
-    pending "Further implementation"
     Fabricate(:garden, user: @user)
+    visit '/'
     click_button "Add Another Garden"
     page.should have_content("Your garden has been created!")
-    field_labeled("Garden Name")[:value].should eq("Second Garden")
+    field_labeled("Garden Name")[:value].should eq("2nd Garden")
     field_labeled("Height")[:value].should eq("10")
     field_labeled("Width")[:value].should eq("10")
   end
 
   scenario "when the user already has multiple gardens" do
-    pending "Further implementation"
     Fabricate(:garden, user: @user)
     Fabricate(:garden, user: @user)
+    visit '/'
     click_button "Add Another Garden"
     page.should have_content("Your garden has been created!")
-    field_labeled("Garden Name").should have_value("Third Garden")
+    field_labeled("Garden Name")[:value].should eq("3rd Garden")
   end
 end
