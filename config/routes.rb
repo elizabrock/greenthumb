@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :categories, only: [:index, :new, :create, :show] do
-    resources :varieties, only: [:new, :create]
+    resources :varieties, only: [:new, :create, :show]
   end
   resources :gardens, only: [:index, :create, :edit]
   resource :user_session, only: [:new, :create, :destroy]
