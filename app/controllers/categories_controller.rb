@@ -30,7 +30,7 @@ class CategoriesController < ApplicationController
     if @category.update(category_params)
       redirect_to categories_path, notice: "The #{@category.name} category has been updated."
     else
-      flash.now[:alert] = "Name can't be blank"
+      flash.now[:alert] = "Your changes could not be saved."
       render :edit
     end
   end
