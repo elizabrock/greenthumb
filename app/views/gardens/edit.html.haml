@@ -1,5 +1,5 @@
-= simple_form_for @garden, url: "#" do |f|
+= simple_form_for @garden, url: garden_path, :method => :patch do |f|
   = f.input :name, label: "Garden Name"
   = f.input :height
   = f.input :width
-  -# Skipping the button for now, as we aren't implementing edit
+  = f.submit "Save Changes"
