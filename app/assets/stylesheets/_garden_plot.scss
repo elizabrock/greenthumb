@@ -1,7 +1,39 @@
-#garden{
+.left-menu {
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 10px;
+  float: left;
+  margin-right: 20px;
+}
+#garden {
+  display:inline-block;
   background-color: #FC0;
   background-image: url(image-path('grid-30px.png'));
   border-right: 1px solid black;
-  border-bottom: 1px solid black; 
+  border-bottom: 1px solid black;
+}
 
+.circle {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+}
+
+.rectangle {
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+}
+
+.green {
+  background-color: #7BD246;
+}
+
+.brown {
+  background-color: #85571E;
+}
+
+.gray {
+  background-color: #DDD;
 }
