@@ -1,0 +1,4 @@
+= simple_form_for @variety, url: category_variety_path do |f|
+  = f.input :name, value: @variety.name
+  = f.input :description, value: @variety.description
+  = f.submit "Save Changes"
