@@ -26,7 +26,7 @@ feature "User Signs In" do
     fill_in "Password", with: "password!"
     click_button "Sign In"
     page.should have_content("Welcome back, eliza@example.com!")
-    current_path.should == root_path
+    current_path.should == gardens_path
   end
 
   scenario "with an email that hasn't been registered" do

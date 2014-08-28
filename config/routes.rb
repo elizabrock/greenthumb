@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  resources :categories, only: [:index, :new, :create, :show] do
+  resources :categories, except: :destroy do
     resources :varieties, only: [:new, :create, :index]
   end
-  resources :gardens, only: [:create, :edit]
+
+  resources :gardens, except: [:new, :update]
   resource :user_session, only: [:new, :create, :destroy]
   resource :user, only: [:new, :create]
 

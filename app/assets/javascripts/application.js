@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require foundation/foundation
 //= require foundation/foundation.alert
-//= require foundation/foundation.tab.js
+//= require foundation/foundation.tab
 //= require turbolinks
 //= require garden_edit.js
 //= require_self

@@ -26,7 +26,9 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'database_cleaner'
   gem 'fabrication'
   gem 'launchy'
+  gem 'pry-rails'
   gem 'shoulda'
 end
