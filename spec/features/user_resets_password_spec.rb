@@ -5,8 +5,8 @@ RSpec.describe UserMailer do
   # end
 
   describe 'resetting password' do
-
     it "sends an email to reset password when logged in" do
+      pending "controller implementation"
       @user = Fabricate(:user)
       login_as @user
       visit '/'

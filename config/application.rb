@@ -30,5 +30,7 @@ module Greenthumb
       g.test_framework      :rspec, fixture: true
       g.fixture_replacement :fabrication
     end
+
+    config.action_mailer.default_url_options = { host: 'greenthumb.com' }
   end
 end
