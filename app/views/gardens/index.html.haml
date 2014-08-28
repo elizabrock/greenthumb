@@ -7,9 +7,9 @@
       - current_user.gardens.each do |garden|
         %li= link_to garden.name, edit_garden_path(garden)
         %table{:border => 1}
-          - "#{garden.width}".to_i.times do
+          - garden.width.times do
             %tr
-              - "#{garden.height}".to_i.times do
+              - garden.height.times do
                 %td
 .right_column
   - if current_user.gardens.empty?

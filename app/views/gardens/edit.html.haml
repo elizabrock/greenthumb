@@ -21,7 +21,7 @@
     %h2 This is where the garden grid will go.
     %h1= @garden.name
     %table{:border => 1}
-      - @garden.width.to_i.times do
+      - @garden.width.times do
         %tr
-          - @garden.height.to_i.times do
+          - @garden.height.times do
             %td
