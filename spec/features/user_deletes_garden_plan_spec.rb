@@ -16,16 +16,28 @@
 # User remains on the current page if they choose not to delete the plan
 
 feature "User deletes a garden plan" do
-	background do
-		@user = Fabricate(:user)
-		login_as @user
-	end
+  background do
+    @user = Fabricate(:user)
+    login_as @user
+    @garden = Fabricate(:garden, user: @user, name: "The Best Garden")
+    visit '/'
+    page.should have_content("The Best Garden")
+    click_link "The Best Garden"
+  end
 
-	scenario "deleting your first garden" do
-		click_button "Set up your First Garden"
-		click_button "Delete This Garden"
-		page.should have_content("Your garden has been deleted.")
-		current_path.should == root_path
-	end
+  scenario "deleting a garden - accept confirmation", js: true do
+    accept_confirm do
+      click_button "Delete This Garden"
+    end
+    page.should have_content("Your garden has been deleted.")
+    current_path.should == gardens_path
+    page.should_not have_content("The Best Garden")
+  end
 
+  scenario "deleting a garden - deny confirmation", js: true do
+    dismiss_confirm do
+      click_button "Delete This Garden"
+    end
+    current_path.should == edit_garden_path(@garden)
+  end
 end
