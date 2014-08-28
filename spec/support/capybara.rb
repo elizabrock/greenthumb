@@ -1,3 +1,3 @@
 require 'capybara/rspec'
-Capybara.javascript_driver = :webkit
 
+Capybara.javascript_driver = :webkit

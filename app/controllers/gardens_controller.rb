@@ -11,9 +11,9 @@ class GardensController < ApplicationController
   end
 
   def destroy
-  	@garden = Garden.find(params[:id])
-  	@garden.destroy!
-  	flash.notice = "Your garden has been deleted."
-  	redirect_to root_path
+    garden = Garden.find(params[:id])
+    garden.destroy!
+    flash.notice = "Your garden has been deleted."
+    redirect_to root_path
   end
 end
