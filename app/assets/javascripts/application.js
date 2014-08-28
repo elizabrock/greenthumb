@@ -14,7 +14,9 @@
 //= require jquery_ujs
 //= require foundation/foundation
 //= require foundation/foundation.alert
+//= require foundation/foundation.tab.js
 //= require turbolinks
-//= require_tree .
+//= require garden_edit.js
+//= require_self
 
 $(function(){ $(document).foundation(); });

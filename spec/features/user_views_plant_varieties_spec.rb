@@ -21,6 +21,10 @@
 
 feature "User views plant varieties" do
   background do
+    @tomatoes = Fabricate(:category, name: "Tomatoes", edible: true)
+    Fabricate(:category, name: "Squash", edible: true)
+    Fabricate(:variety, name: "Cherry", description: "some description", category: @tomatoes)
+    Fabricate(:variety, name: "Grape", description: "some description", category: @tomatoes)
     @user = Fabricate(:user)
     @garden = Fabricate(:garden)
     login_as @user
@@ -31,13 +35,11 @@ feature "User views plant varieties" do
 
   scenario "Happy path - user finds what they're looking for" do
     pending "Further implementation"
-    @tomatoes = Fabricate(:category, name: "Tomatoes", edible: true)
-    Fabricate(:category, name: "Squash", edible: true)
-    Fabricate(:variety, name: "Cherry", description: "some description", category: @tomatoes)
-    Fabricate(:variety, name: "Grape", description: "some description", category: @tomatoes)
+    Category.count.should == 2
+    Category.first.name.should == "Tomatoes"
     page.should have_content("Tomatoes")
     page.should have_content("Squash")
-    click_on "Tomatoes"
+    page.select "Tomatoes"
     page.should have_content("Cherry")
     page.should have_content("Grape")
   end

@@ -5,3 +5,9 @@
 
 =link_to "Plants", "#"
 =link_to "Add", "#"
+%select.category_dropdown
+  %option Select a Category
+  - @categories.each do |category|
+    %option{:value => "#{category.id}"}= category.name
+
+#varieties_list
