@@ -1,5 +1,3 @@
-# COMMIT EVERYTHANG COMMIT EVERYTHANG COMMIT EVERYTHANG COMMIT EVERYTHANG
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # As a user,
 # In order to update where I get emails and how I log in,
 # I want the ability to change my account information
@@ -11,50 +9,43 @@
 
 feature "User changes profile email" do
   background do
-    user = Fabricate(:user, email: "eliza@example.com", password: "password1")
-    login_as user
+    @user = Fabricate(:user, email: "eliza@example.com", password: "password1")
+    login_as @user
+  end
+
+  scenario "with correct email & password (Super Happy Path)" do
+    click_link "Profile"
+    current_path.should == edit_user_profile_path
+    fill_in "Email", with: "adam@example.com"
+    fill_in "Password", with: "password2"
+    click_on "Save"
+    User.authenticate("adam@example.com", "password2").should_not be_nil
+    page.should have_content("Profile has been updated.")
   end
 
   scenario "with correct email (Happy Path)" do
     click_link "Profile"
-    current_path.should == user_profile_path
+    current_path.should == edit_user_profile_path
     fill_in "Email", with: "adam@example.com"
-    click_button "Save"
+    click_on "Save"
+    User.authenticate("adam@example.com", "password1").should_not be_nil
     page.should have_content("Profile has been updated.")
-  end
-
-  scenario "but left new email blank (Sad Path)" do
-    click_link "Profile"
-    click_link "Edit email"
-    fill_in "Email", with: ""
-    click_button "Save"
-    page.should have_error("Can't be blank.", on: "Email")
   end
 end
 
-# are you here yet? THEN COMMIT DAT SON
-
 feature "User changes profile password" do
   background do
-    user = Fabricate(:user, email: "eliza@example.com", password: "password1")
-    login_as user
+    @user = Fabricate(:user, email: "eliza@example.com", password: "password1")
+    login_as @user
   end
 
   scenario "with correct password (Happy Path)" do
     click_link "Profile"
-    current_path.should == user_profile_path
-    click_link "Edit password"
+    current_path.should == edit_user_profile_path
     fill_in "Password", with: "password2"
     click_button "Save"
     page.should have_content("Profile has been updated.")
+    User.authenticate("eliza@example.com", "password2").should_not be_nil
+    page.should have_content("Profile has been updated.")
   end
-
-  scenario "but left new password blank (Sad Path)" do
-    click_link "Profile"
-    click_link "Edit password"
-    fill_in "Email", with: ""
-    click_button "Save"
-    page.should have_error("Can't be blank.", on: "Password")
-  end
-
 end

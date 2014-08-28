@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :gardens, only: [:create, :edit]
   resource :user_session, only: [:new, :create, :destroy]
   resource :user, only: [:new, :create] do
-    resource :profile, only: [:show]
+    resource :profile, only: [:edit, :update]
   end
 
 
