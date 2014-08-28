@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :categories, except: :destroy do
-    resources :varieties
+    resources :varieties, except: [:show, :index]
   end
 
   resources :gardens, except: [:new, :update]

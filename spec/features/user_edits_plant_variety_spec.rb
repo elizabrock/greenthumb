@@ -26,7 +26,7 @@ feature "User adds plant variety" do
     @heirloom = Fabricate(:variety, name: "Heirloom", description: "Not necessarily red", category_id: @tomato.id)
 
     visit category_path(@tomato.id)
-    click_on "Edit cherry"
+    click_on "cherry"
   end
 
   scenario "Form is pre-populated" do
@@ -41,7 +41,7 @@ feature "User adds plant variety" do
     page.should have_content("Cherry")
     page.should have_content("Small, sweet, and cherry-sized.  Red.")
     page.should have_content("The Cherry variety has been updated.")
-    current_path.should eq category_variety_path(@cherry_tomato.category_id, @cherry_tomato.id)
+    current_path.should eq edit_category_variety_path(@cherry_tomato.category, @cherry_tomato)
   end
 
   scenario "Name is not entered" do
@@ -55,8 +55,8 @@ feature "User adds plant variety" do
     fill_in "Name", with: "Cherry"
     fill_in "Description", with: "Small, sweet, and cherry-sized.  Red."
     click_button "Save Changes"
-    visit category_path(@tomato.id)
-    click_on "add variety"
+    visit category_path(@tomato)
+    click_on "Add New tomato Variety"
     fill_in "Name", with: "Cherry"
     fill_in "Description", with: "Small, sweet, and cherry-sized.  Red."
     click_button "Create New Variety"
