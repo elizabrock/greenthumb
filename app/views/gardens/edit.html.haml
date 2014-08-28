@@ -19,3 +19,9 @@
         %h3 This is where the plants navigation will go.
   .navigable
     %h2 This is where the garden grid will go.
+    %h1= @garden.name
+    %table{:border => 1}
+      - @garden.width.to_i.times do
+        %tr
+          - @garden.height.to_i.times do
+            %td
