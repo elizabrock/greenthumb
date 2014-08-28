@@ -2,5 +2,5 @@
 %ul#varieties
 - @category.varieties.each do |var|
   %p "#{var.name} - #{var.description}"
-  = link_to "Edit #{var.name}", edit_category_variety_path(@category, var.id)
+  = link_to "Edit #{var.name}", edit_category_variety_path(@category, var)
 = link_to "add variety", new_category_variety_path(@category)
