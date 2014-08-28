@@ -3,6 +3,7 @@
 
   function init(){
     draggable();
+    $('#save-garden').on('click',saveGarden);
   }
 
   function draggable(){
@@ -33,6 +34,18 @@
         }
       }
     });
+  }
+
+  function saveGarden(event){
+    event.preventDefault();
+    var circles = $("#garden").children(".circle").toArray();
+    var rectangles = $("#garden").children(".rectangle").toArray();
+    circles.forEach(function(){
+      g
+    });
+    rectangles.forEach(function(){
+
+    })
   }
 
 })();

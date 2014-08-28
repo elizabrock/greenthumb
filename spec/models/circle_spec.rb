@@ -13,11 +13,11 @@ RSpec.describe Circle, :type => :model do
 
     it "should belong to the created garden" do
       circle.garden_id.should == garden.id
-    end 
+    end
 
     it "should have the given color" do
       circle.color.should == "#cccccc"
-    end 
+    end
 
     it "should have the given height" do
       circle.height.should == 200
@@ -53,11 +53,11 @@ RSpec.describe Circle, :type => :model do
     end
 
     it "should have the default height" do
-      circle.height.should == 100
+      circle.height.should == 60
     end
 
     it "should have the default width" do
-      circle.width.should == 100
+      circle.width.should == 60
     end
   end
 end

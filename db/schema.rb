@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827165048) do
+ActiveRecord::Schema.define(version: 20140828152940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,33 @@ ActiveRecord::Schema.define(version: 20140827165048) do
     t.datetime "updated_at"
   end
 
+  create_table "circles", force: true do |t|
+    t.string   "color"
+    t.integer  "width"
+    t.integer  "height"
+    t.integer  "top"
+    t.integer  "left"
+    t.integer  "garden_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "gardens", force: true do |t|
     t.string   "name"
     t.integer  "height"
     t.integer  "width"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rectangles", force: true do |t|
+    t.string   "color"
+    t.integer  "width"
+    t.integer  "height"
+    t.integer  "top"
+    t.integer  "left"
+    t.integer  "garden_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

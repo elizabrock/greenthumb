@@ -19,6 +19,12 @@
   position:absolute;
 }
 
+.draggable.green,
+.draggable.brown,
+.draggable.gray {
+  opacity: .8;
+}
+
 .circle {
   border-radius: 50%;
   height: 60px;

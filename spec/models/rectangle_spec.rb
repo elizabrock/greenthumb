@@ -13,11 +13,11 @@ RSpec.describe Rectangle, :type => :model do
 
     it "should belong to the created garden" do
       rectangle.garden_id.should == garden.id
-    end 
+    end
 
     it "should have the given color" do
       rectangle.color.should == "#cccccc"
-    end 
+    end
 
     it "should have the given height" do
       rectangle.height.should == 200
@@ -53,11 +53,11 @@ RSpec.describe Rectangle, :type => :model do
     end
 
     it "should have the default height" do
-      rectangle.height.should == 100
+      rectangle.height.should == 60
     end
 
     it "should have the default width" do
-      rectangle.width.should == 100
+      rectangle.width.should == 60
     end
   end
 end

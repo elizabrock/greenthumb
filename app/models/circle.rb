@@ -6,7 +6,7 @@ class Circle < ActiveRecord::Base
   protected
 
   def populate_default_values
-    self.height ||= 100
-    self.width ||= 100
+    self.height ||= 60
+    self.width ||= 60
   end
 end
