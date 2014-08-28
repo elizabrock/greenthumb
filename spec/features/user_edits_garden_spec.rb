@@ -12,9 +12,7 @@ feature "User edits an existing garden" do
     fill_in "Height", with: "20"
     fill_in "Width", with: "30"
     click_button "Save Changes"
-    field_labeled("Garden Name")[:value].should eq("Updated Garden")
-    field_labeled("Height")[:value].should eq("20")
-    field_labeled("Width")[:value].should eq("30")
+    page.should have_content("Updated Garden was successfully updated!")
   end
 
 

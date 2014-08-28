@@ -1,5 +1,5 @@
 body {
-  margin: 0.5em;
+  margin: 0.5em 2em;
 }
 
 nav#main, main, footer {
@@ -21,5 +21,37 @@ nav#main {
   ul {
     float: right;
     list-style-type: none;
+  }
+}
+
+main {
+  .left_column, .right_column {
+    @include grid-column(6);
+  }
+}
+
+footer {
+  margin-top: 5em;
+  padding-top: 1em;
+  border-top: 2px solid $info-color;
+  text-align: center;
+  a {
+    @include button($padding: $button-sml, $bg: $vapor);
+  }
+}
+
+// Buttons
+
+input[type=submit] {
+  @include button($padding: $button-med, $bg: $secondary-color);
+}
+
+// Page Specific Layouts:
+
+#welcome {
+  @include grid-column(8, $push: 2);
+  text-align: center;
+  img.logo, .information {
+    @include grid-column(6);
   }
 }
