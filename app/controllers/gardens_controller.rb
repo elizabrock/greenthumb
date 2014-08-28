@@ -6,16 +6,20 @@ class GardensController < ApplicationController
     redirect_to edit_garden_path(garden)
   end
 
- def edit
-  if @garden = current_user.gardens.find_by_id(params[:id]) # <--- This lets people load gardens that aren't theirs!! When we implement edit, we must fix this vulnerability!
-    @garden
-  else
-    redirect_to gardens_path
+  def edit
+    if current_user == nil
+      redirect_to new_user_session_path
+    else
+      if @garden = current_user.gardens.find_by_id(params[:id]) # <--- This lets people load gardens that aren't theirs!! When we implement edit, we must fix this vulnerability!
+        @garden
+      else
+        redirect_to gardens_path
+      end
+    end
   end
-end
 
 
-def update
+  def update
     @garden = Garden.find(params[:id])
     if @garden.update_attributes(garden_params)
       flash.notice = "#{@garden.name} was successfully updated!"
@@ -23,7 +27,7 @@ def update
     else
       render 'edit'
     end
- end
+  end
 
   private
 
