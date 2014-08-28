@@ -1,0 +1,24 @@
+%h1 Choose A New Password
+
+/ %form
+/   .row
+/     .large-6.large-centered.columns
+/       %label Email
+/         %input{:type => 'text'}
+/   .row
+/     .large-6.large-centered.columns
+/       %label Password
+/         %input{:type => 'password'}
+/   .row
+/     .large-6.large-centered.columns
+/       %label Confirm Password
+/         %input{:type => 'password'}
+/   .row
+/     .large-6.large-centered.columns
+/       %a{:class => 'button'} Submit
+
+= simple_form_for @user, url: password_reset_path(@user), :html => {:method => :put} do |f|
+  = f.input :email
+  = f.input :password
+  = f.input :password_confirmation
+  = f.submit "Submit"
