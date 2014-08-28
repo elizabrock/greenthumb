@@ -8,5 +8,6 @@ class GardensController < ApplicationController
 
   def edit
     @garden = Garden.find(params[:id]) # <--- This lets people load gardens that aren't theirs!! When we implement edit, we must fix this vulnerability!
+    @categories = Category.all
   end
 end
