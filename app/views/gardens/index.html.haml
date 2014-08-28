@@ -1,0 +1,7 @@
+- if current_user.gardens.empty?
+  %p You don't have any gardens yet!
+  = button_to "Set up your First Garden", gardens_path
+- else
+  %ul
+    - current_user.gardens.each do |garden|
+      %li= link_to garden.name, edit_garden_path(garden)

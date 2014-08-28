@@ -1,7 +1,7 @@
 class GardensController < ApplicationController
 
   def create
-    garden = Garden.create!
+    garden = current_user.gardens.create!
     flash.notice = "Your garden has been created!"
     redirect_to edit_garden_path(garden)
   end

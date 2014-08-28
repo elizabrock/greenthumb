@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :new, :create, :show] do
     resources :varieties, only: [:new, :create]
   end
-  resources :gardens, only: [:create, :edit]
+  resources :gardens, only: [:index, :create, :edit]
   resource :user_session, only: [:new, :create, :destroy]
   resource :user, only: [:new, :create]
 
