@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require foundation
+//= require foundation/foundation
+//= require foundation/foundation.alert
 //= require turbolinks
 //= require_tree .
 
