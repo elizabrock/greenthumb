@@ -5,13 +5,20 @@ RSpec.describe UserMailer do
   # end
 
   describe 'resetting password' do
-    it "sends an email to reset password when logged in" do
-      pending "controller implementation"
+    it "sends an email to reset password when not logged in" do
+      pending "further implementation"
       @user = Fabricate(:user)
-      login_as @user
       visit '/'
-      click_link 'My Profile'
-      click_link 'Reset Password'
+      click_link 'Sign In'
+      click_link 'Reset your password'
+      fill_in "Email", with: @user.email
+      click_on "Send Email"
+      puts "/password_resets/#{@user.reset_password_token}/edit"
+      visit "/password_resets/#{@user.reset_password_token}/edit"
+      fill_in "Email", with: @user.email
+      fill_in "Password", with: 'abc123'
+      fill_in "PasswordConfirmation", with: 'abc123'
+      click_on "Submit"
     end
   end
 end
