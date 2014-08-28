@@ -1,7 +1,21 @@
-= simple_form_for @garden, url: "#" do |f|
-  = f.input :name, label: "Garden Name"
-  = f.input :height
-  = f.input :width
-  -# Skipping the button for now, as we aren't implementing edit
+#garden
+  .left_navigation
+    %ul.tabs{ "data-tab" => "", role: "tablist" }
+      %li.tab-title.active{ role: "presentational" }
+        = link_to "Design", "#panel-design", role: "tab", tabindex: "0", "aria-selected" => "false", controls: "panel-design"
+      %li.tab-title{ role: "presentational" }
+        = link_to "Plants", "#panel-plants", role: "tab", tabindex: "0", "aria-selected" => "false", controls: "panel-plants"
+    .tabs-content
+      %section{ role: "tabpanel", "aria-hidden" => "false", class: "content active", id: "panel-design" }
+        = simple_form_for @garden, url: "#" do |f|
+          = f.input :name, label: "Garden Name"
+          = f.input :height
+          = f.input :width
+          -# Skipping the button for now, as we aren't implementing edit
 
-= button_to("Delete This Garden", @garden, method: :delete, data: { confirm: "Are you sure?" })
+        %hr
+        = button_to("Delete This Garden", @garden, method: :delete, data: { confirm: "Are you sure?"}, class: "button tiny alert", id: "garden_delete" )
+      %section{ role: "tabpanel", "aria-hidden" => "true", class: "content", id: "panel-plants" }
+        %h3 This is where the plants navigation will go.
+  .navigable
+    %h2 This is where the garden grid will go.

@@ -28,6 +28,14 @@ main {
   .left_column, .right_column {
     @include grid-column(6);
   }
+
+  .left_navigation, .right_navigation {
+    @include grid-column(4);
+  }
+
+  .navigable {
+    @include grid-column(8);
+  }
 }
 
 footer {
