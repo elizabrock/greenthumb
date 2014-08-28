@@ -9,9 +9,9 @@ Rails.application.routes.draw do
     resources :varieties, only: [:new, :create]
   end
   resource :user_session, only: [:new, :create, :destroy]
-  resource :user, only: [:new, :create] do
-    resources :gardens, only: [:create, :edit, :update]
-  end
+  resource :user, only: [:new, :create] 
+  resources :gardens, only: [:create, :edit, :update]
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
