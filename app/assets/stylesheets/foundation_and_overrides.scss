@@ -119,14 +119,14 @@ $secondary-color: #00b09a;
 // $alert-color: #f04124;
 $success-color: #81c341;
 // $warning-color: #f08a24;
-// $info-color: #a0d3e8;
+$info-color: #a0d3e8;
 
-// $white       : #FFFFFF;
+$white       : #FFFFFF;
 // $ghost       : #FAFAFA;
-// $snow        : #F9F9F9;
+$snow        : #F9F9F9;
 // $vapor       : #F6F6F6;
 // $white-smoke : #F5F5F5;
-// $silver      : #EFEFEF;
+$silver      : #EFEFEF;
 // $smoke       : #EEEEEE;
 // $gainsboro   : #DDDDDD;
 // $iron        : #CCCCCC;
@@ -422,13 +422,13 @@ $include-html-alert-classes: true;
 // 05. Buttons
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-button-classes: $include-html-classes;
+$include-html-button-classes: true;
 
 // We use these to build padding for buttons.
-// $button-tny: rem-calc(10);
-// $button-sml: rem-calc(14);
-// $button-med: rem-calc(16);
-// $button-lrg: rem-calc(18);
+$button-tny: rem-calc(8);
+$button-sml: rem-calc(10);
+$button-med: rem-calc(14);
+$button-lrg: rem-calc(16);
 
 // We use this to control the display property.
 // $button-display: inline-block;
@@ -609,7 +609,7 @@ $include-html-alert-classes: true;
 // 11. Forms
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-form-classes: $include-html-classes;
+$include-html-form-classes: true;
 
 // We use this to set the base for lots of form spacing and positioning styles
 // $form-spacing: rem-calc(16);
@@ -1299,12 +1299,12 @@ $include-html-alert-classes: true;
 // 31. Tabs
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-tabs-classes: $include-html-classes;
+$include-html-tabs-classes: true;
 
 // $tabs-navigation-padding: rem-calc(16);
-// $tabs-navigation-bg-color: $silver  ;
-// $tabs-navigation-active-bg-color: $white;
-// $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
+$tabs-navigation-bg-color: $white;
+$tabs-navigation-active-bg-color: $silver;
+$tabs-navigation-hover-bg-color: $snow;
 // $tabs-navigation-font-color: $jet;
 // $tabs-navigation-active-font-color: $tabs-navigation-font-color;
 // $tabs-navigation-font-size: rem-calc(16);
@@ -1442,4 +1442,16 @@ $include-html-alert-classes: true;
 // $include-accessibility-classes: true;
 
 @import 'foundation';
+
+// Tab Customization
+ul.tabs .tab-title > a {
+  outline: 0;
+}
+
+.tabs-content section.active {
+  background-color: $tabs-navigation-active-bg-color;
+  padding: 0.5em;
+}
+
 @import 'greenthumb_layout';
+@import 'gardens';

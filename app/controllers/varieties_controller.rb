@@ -2,6 +2,10 @@ class VarietiesController < ApplicationController
 
   before_action :load_category
 
+  def show
+    @variety = Variety.find(params[:id])
+  end
+
   def new
     @variety = Variety.new
   end
@@ -14,6 +18,11 @@ class VarietiesController < ApplicationController
       flash.now[:alert] = "Variety could not be created."
       render :new
     end
+  end
+
+  def destroy
+    Variety.find(params[:id]).destroy
+    redirect_to category_path(@category), notice: "Variety has been deleted."
   end
 
   protected
