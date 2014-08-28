@@ -1,6 +1,8 @@
 %h1= @category.name
 %ul#varieties
-- @category.varieties.each do |var|
-  %p "#{var.name} - #{var.description}"
-  = link_to "Edit #{var.name}", edit_category_variety_path(@category, var)
+- @category.varieties.each do |variety|
+  = link_to "#{variety.name} - #{variety.description}", category_variety_path(@category, variety)
+  = link_to "Edit #{variety.name}", edit_category_variety_path(@category, variety)
+  = button_to "Delete #{variety.name}", category_variety_path(@category, variety), method: :delete
 = link_to "add variety", new_category_variety_path(@category)
+= link_to "Edit Plant Category", edit_category_path(@category)
