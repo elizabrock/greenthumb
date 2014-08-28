@@ -9,6 +9,7 @@ gem 'foundation-rails'
 gem 'haml'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
+gem "letter_opener", :group => :development
 gem 'pg'
 gem 'rails', '4.1.5'
 gem 'sass-rails', '~> 4.0.3'
@@ -21,6 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'pry-rails'
 end
 
 group :test do
