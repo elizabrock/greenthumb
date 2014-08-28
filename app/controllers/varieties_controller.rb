@@ -17,7 +17,7 @@ class VarietiesController < ApplicationController
   end
 
   def destroy
-    Variety.find_by(id: params[:id]).destroy
+    Variety.find(params[:id]).destroy
     redirect_to category_path(@category), notice: "Variety has been deleted."
   end
 
