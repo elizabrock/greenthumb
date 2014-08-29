@@ -20,9 +20,8 @@ feature "User edits an existing garden" do
   end
 
   scenario "a user tries to access another user's garden edit page" do
-    @garden2 = Fabricate(:garden, user: @user1)
     login_as @user2
-    visit edit_garden_path(@garden2)
+    visit edit_garden_path(@garden)
     expect(page.current_path).to eq '/gardens'
   end
 
