@@ -19,7 +19,7 @@
       helper: "clone",
     });
 
-    $( "#garden" ).droppable({
+    $( "#garden-plot" ).droppable({
       drop: function( event, element ) {
         var classes = element.draggable[0].classList;
         if ($.inArray('draggable', classes) !== -1) {
@@ -29,7 +29,7 @@
           $('.draggable').draggable({containment: "#garden", grid: [ 15, 15 ]});
           $( ".resizable" ).resizable({
             grid: 30,
-            containment: "#garden"
+            containment: "#garden-plot"
           });
         }
       }
@@ -38,10 +38,10 @@
 
   function saveGarden(event){
     event.preventDefault();
-    var gardenId = $('#garden').attr('data-id');
-    var circles = $("#garden").children(".circle").toArray();
-    var rectangles = $("#garden").children(".rectangle").toArray();
-    var shapes = $('#garden').children().toArray();
+    var gardenId = $('#garden-plot').attr('data-id');
+    var circles = $("#garden-plot").children(".circle").toArray();
+    var rectangles = $("#garden-plot").children(".rectangle").toArray();
+    var shapes = $('#garden-plot').children().toArray();
     
     circles.forEach(function(shape){
       var width = $(shape).css('width');
@@ -59,7 +59,7 @@
           alert(message + " " + err);
         },
         success: function(msg) {
-          alert( "Your garden has been saved!" );
+          $('body').prepend('<p>Your garden has been saved!</p>');
         }
       });
     });
@@ -80,7 +80,7 @@
           alert(message + " " + err);
         },
         success: function(msg) {
-          alert( "Your garden has been saved!" );
+          $('body').prepend('<p>Your garden has been saved!</p>');
         }
       });
     });

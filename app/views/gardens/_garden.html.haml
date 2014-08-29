@@ -1,6 +1,7 @@
 %h1= garden.name
-%table{:border => 1}
-  - garden.width.times do
-    %tr
-      - garden.height.times do
-        %td
+-# %table{:border => 1}
+-#   - garden.width.times do
+-#     %tr
+-#       - garden.height.times do
+-#         %td
+#garden-plot{ :style => "width: #{ garden.width * 12 * 5 }px; height: #{ garden.height * 12 * 5 }px;", "data-id" => "#{garden.id}"  }

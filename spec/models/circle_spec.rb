@@ -4,7 +4,8 @@ RSpec.describe Circle, :type => :model do
   it { should validate_presence_of :garden_id }
 
   context "if the circle being created is already populated with values" do
-    let(:garden){ Garden.create! }
+    let(:user){ User.create!(email: "test@test.com", password: "testpassword") }
+    let(:garden){ Garden.create!(user_id: user.id) }
     let(:circle){ Circle.new(color: "#cccccc", height: 200, width: 200, top: 20, left: 50, garden_id: garden.id) }
 
     before do
@@ -37,7 +38,8 @@ RSpec.describe Circle, :type => :model do
   end
 
   context "if the circle is first being set" do
-    let(:garden){ Garden.create! }
+    let(:user){ User.create!(email: "test@test.com", password: "testpassword") }
+    let(:garden){ Garden.create!(user_id: user.id) }
     let(:circle){ Circle.create(color: "#ffcc00", garden_id: garden.id) }
 
     before do
