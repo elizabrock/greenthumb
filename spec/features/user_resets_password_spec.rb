@@ -3,11 +3,11 @@ feature "User resets password" do
     @user = Fabricate(:user)
     visit '/'
     click_link 'Sign In'
-    click_link 'Reset your password'
+    click_link 'Forgot password?'
     fill_in "Email", with: @user.email
     click_on "Send Email"
     @user = User.find_by_email(@user.email)
-    visit "/password_resets/#{@user.reset_password_token}/edit"
+    visit edit_password_reset_path(@user.reset_password_token)
     fill_in "New password", with: 'abc123'
     fill_in "Password confirmation", with: 'abc123'
     click_on "Submit"
@@ -26,22 +26,22 @@ feature "User resets password" do
     @user = Fabricate(:user)
     visit '/'
     click_link 'Sign In'
-    click_link 'Reset your password'
+    click_link 'Forgot password?'
     fill_in "Email", with: "abc" + @user.email
     click_on "Send Email"
     current_path.should == root_path
-    page.should have_content("Couldn't find user.")
+    page.should have_content("We could not send your password reset email.")
   end
 
   scenario 'Sad path, password confirmation does not match new password' do
     @user = Fabricate(:user)
     visit '/'
     click_link 'Sign In'
-    click_link 'Reset your password'
+    click_link 'Forgot password?'
     fill_in "Email", with: @user.email
     click_on "Send Email"
     @user = User.find_by_email(@user.email)
-    visit "/password_resets/#{@user.reset_password_token}/edit"
+    visit edit_password_reset_path(@user.reset_password_token)
     fill_in "New password", with: 'abc123'
     fill_in "Password confirmation", with: 'bbc123'
     click_on "Submit"

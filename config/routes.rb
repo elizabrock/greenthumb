@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :gardens, except: [:new]
   resource :user_session, only: [:new, :create, :destroy]
   resource :user, except: [:destroy]
-  resources :password_resets
+  resources :password_resets, except: [:index, :show, :destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
