@@ -15,7 +15,7 @@ feature "User changes profile email" do
 
   scenario "with correct email & password (Super Happy Path)" do
     click_link "Profile"
-    current_path.should == edit_user_profile_path
+    current_path.should == edit_user_path
     fill_in "Email", with: "adam@example.com"
     fill_in "Password", with: "password2"
     click_on "Save"
@@ -25,7 +25,7 @@ feature "User changes profile email" do
 
   scenario "with correct email (Happy Path)" do
     click_link "Profile"
-    current_path.should == edit_user_profile_path
+    current_path.should == edit_user_path
     fill_in "Email", with: "adam@example.com"
     click_on "Save"
     User.authenticate("adam@example.com", "password1").should_not be_nil
@@ -41,7 +41,7 @@ feature "User changes profile password" do
 
   scenario "with correct password (Happy Path)" do
     click_link "Profile"
-    current_path.should == edit_user_profile_path
+    current_path.should == edit_user_path
     fill_in "Password", with: "password2"
     click_button "Save"
     page.should have_content("Profile has been updated.")

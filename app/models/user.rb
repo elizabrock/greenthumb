@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
-  has_one :profile
 
   validates_presence_of :email
   validates_presence_of :password, on: :create

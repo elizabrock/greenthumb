@@ -10,9 +10,7 @@ Rails.application.routes.draw do
   end
   resources :gardens, only: [:create, :edit]
   resource :user_session, only: [:new, :create, :destroy]
-  resource :user, only: [:new, :create] do
-    resource :profile, only: [:edit, :update]
-  end
+  resource :user, only: [:new, :create, :edit, :update]
 
 
   # Example of regular route:
