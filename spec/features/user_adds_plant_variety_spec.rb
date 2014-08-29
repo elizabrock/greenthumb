@@ -19,10 +19,10 @@
 feature "User adds plant variety" do
 
   background do
-    @tomato = Fabricate(:category, name: "tomato", edible: true)
+    @tomato = Fabricate(:category, name: "Tomato", edible: true)
     visit categories_path
-    click_link "tomato"
-    click_on "add variety"
+    click_link "Tomato"
+    click_on "Add New Tomato Variety"
   end
 
   scenario "Happy path, create a variety" do
@@ -45,7 +45,7 @@ feature "User adds plant variety" do
     fill_in "Name", with: "Cherry"
     fill_in "Description", with: "Small, sweet, and cherry-sized.  Red."
     click_button "Create New Variety"
-    click_on "add variety"
+    click_on "Add New Tomato Variety"
     fill_in "Name", with: "Cherry"
     fill_in "Description", with: "Small, sweet, and cherry-sized.  Red."
     click_button "Create New Variety"

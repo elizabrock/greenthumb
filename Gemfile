@@ -28,6 +28,7 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'codeclimate-test-reporter', require: false
   gem 'database_cleaner'
   gem 'fabrication'
   gem 'launchy'

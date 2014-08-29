@@ -2,10 +2,6 @@ class VarietiesController < ApplicationController
 
   before_action :load_category
 
-  def show
-    @variety = Variety.find(params[:id])
-  end
-
   def new
     @variety = Variety.new
   end
@@ -16,6 +12,20 @@ class VarietiesController < ApplicationController
       redirect_to category_path(@category), notice: "The #{@variety.name} variety has been created."
     else
       flash.now[:alert] = "Variety could not be created."
+      render :new
+    end
+  end
+
+  def edit
+    @variety = Variety.find(params[:id])
+  end
+
+  def update
+    @variety = Variety.find(params[:id])
+    if @variety.update(variety_params)
+      redirect_to edit_category_variety_path(@variety.category_id, @variety.id), notice: "The #{@variety.name} variety has been updated."
+    else
+      flash.now[:alert] = "Variety could not be updated."
       render :new
     end
   end
