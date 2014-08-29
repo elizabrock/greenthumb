@@ -16,10 +16,24 @@ class VarietiesController < ApplicationController
     end
   end
 
-  def show
+  def edit
     @variety = Variety.find(params[:id])
   end
 
+  def update
+    @variety = Variety.find(params[:id])
+    if @variety.update(variety_params)
+      redirect_to edit_category_variety_path(@variety.category_id, @variety.id), notice: "The #{@variety.name} variety has been updated."
+    else
+      flash.now[:alert] = "Variety could not be updated."
+      render :new
+    end
+  end
+
+  def destroy
+    Variety.find(params[:id]).destroy
+    redirect_to category_path(@category), notice: "Variety has been deleted."
+  end
 
   protected
 
