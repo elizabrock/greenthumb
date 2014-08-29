@@ -1,16 +1,41 @@
 !!!
-%html
+%html{:lang => "en"}
   %head
-    %title Greenthumb
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title= content_for?(:title) ? yield(:title) : "GreenThumb!"
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
+    <script type="text/javascript" src="//use.typekit.net/ayn0ftv.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   %body
-    - if logged_in?
-      = link_to "Sign Out", user_session_path, method: :delete
-    - else
-      = link_to "Sign In", new_user_session_path
-      = link_to "Sign Up", new_user_path
-    = notice
-    = alert
-    = yield
+    %nav#main
+      %ul
+        - if logged_in?
+          - unless request.path == root_path
+            %li= link_to "< Back to Dashboard", root_path
+          %li= link_to "Profile", edit_user_path
+          %li= link_to "Sign Out", user_session_path, method: :delete
+        - else
+          %li= link_to "Sign In", new_user_session_path
+          %li= link_to "Sign Up", new_user_path
+      = link_to root_path, id: "logo" do
+        %h2.title
+          = image_tag "POGO_10.090_OCA.svg", class: "logo"
+          GreenThumb
+    %main
+      - if notice.present?
+        .alert-box.success{ "data-alert" => "" }
+          = notice
+          %a.close{ href: "#" } &times;
+      - if alert.present?
+        .alert-box.alert{ "data-alert" => "" }
+          = alert
+          %a.close{ href: "#" } &times;
+      = yield
+    %footer
+      = link_to "Manage Plant Categories", categories_path
+
+    = javascript_include_tag "application"
+    = javascript_tag '$.fx.off = true;' if Rails.env.test?

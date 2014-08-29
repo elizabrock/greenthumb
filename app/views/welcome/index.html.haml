@@ -1,4 +1,8 @@
-%h1 Welcome Aboard!
-= link_to "Manage Plant Categories", categories_path
-= link_to "Profile", edit_user_path
-= button_to "Set up your First Garden", gardens_path
+#welcome
+  = image_tag "POGO_10.090_OCA.svg", class: "logo"
+  .information
+    %h1.tagline Anyone can have a GreenThumb!
+
+    %p Vestibulum id ligula porta felis euismod semper. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+    = link_to "Sign Up!", new_user_path, class: "button"

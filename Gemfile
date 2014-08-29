@@ -5,6 +5,7 @@ ruby '2.1.2'
 source 'https://rubygems.org'
 
 gem 'coffee-rails', '~> 4.0.0'
+gem 'foundation-rails'
 gem 'haml'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
@@ -24,7 +25,11 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'codeclimate-test-reporter', require: false
+  gem 'database_cleaner'
   gem 'fabrication'
   gem 'launchy'
+  gem 'pry-rails'
   gem 'shoulda'
 end
