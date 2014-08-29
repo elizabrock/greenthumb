@@ -1,4 +1,5 @@
 class GardensController < ApplicationController
+  before_filter :require_login
 
   def create
     garden = current_user.gardens.create!
@@ -7,31 +8,28 @@ class GardensController < ApplicationController
   end
 
   def edit
-    if current_user == nil
-      redirect_to new_user_session_path
+    if @garden = current_user.gardens.find(params[:id])
     else
-      if @garden = current_user.gardens.find_by_id(params[:id]) # <--- This lets people load gardens that aren't theirs!! When we implement edit, we must fix this vulnerability!
-        @garden
-      else
-        redirect_to gardens_path
-      end
+      flash.notice = "The garden could not be found."
+      redirect_to gardens_path
     end
   end
 
 
   def update
-    @garden = Garden.find(params[:id])
+    @garden = current_user.gardens.find(params[:id])
     if @garden.update_attributes(garden_params)
       flash.notice = "#{@garden.name} was successfully updated!"
       redirect_to gardens_path
     else
+      flash.notice = "Your changes could not be saved."
       render 'edit'
     end
   end
 
   private
 
-    def garden_params
-      params.require(:garden).permit(:name, :height, :width)
-    end
+  def garden_params
+    params.require(:garden).permit(:name, :height, :width)
+  end
 end
