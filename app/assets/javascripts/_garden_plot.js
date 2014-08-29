@@ -38,14 +38,52 @@
 
   function saveGarden(event){
     event.preventDefault();
+    var gardenId = $('#garden').attr('data-id');
     var circles = $("#garden").children(".circle").toArray();
     var rectangles = $("#garden").children(".rectangle").toArray();
-    circles.forEach(function(){
-      g
-    });
-    rectangles.forEach(function(){
+    var shapes = $('#garden').children().toArray();
+    
+    circles.forEach(function(shape){
+      var width = $(shape).css('width');
+      var height = $(shape).css('height');
+      var top = $(shape).css('top');
+      var left = $(shape).css('left');
+      var color = $(shape).css('background-color');
 
-    })
+      $.ajax({
+        type: "POST",
+        url: '/gardens/'+gardenId+'/shapes',
+        data: { type:"circle", width: width, height: height, top: top, left: left, color: color },
+        dataType: 'json',
+        error: function(res, message, err) {
+          alert(message + " " + err);
+        },
+        success: function(msg) {
+          alert( "Your garden has been saved!" );
+        }
+      });
+    });
+
+    rectangles.forEach(function(shape){
+      var width = $(shape).css('width');
+      var height = $(shape).css('height');
+      var top = $(shape).css('top');
+      var left = $(shape).css('left');
+      var color = $(shape).css('background-color');
+
+      $.ajax({
+        type: "POST",
+        url: '/gardens/'+gardenId+'/shapes',
+        data: { type:"rectangle", width: width, height: height, top: top, left: left, color: color },
+        dataType: 'json',
+        error: function(res, message, err) {
+          alert(message + " " + err);
+        },
+        success: function(msg) {
+          alert( "Your garden has been saved!" );
+        }
+      });
+    });
   }
 
 })();

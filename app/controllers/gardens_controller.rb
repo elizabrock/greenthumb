@@ -11,8 +11,7 @@ class GardensController < ApplicationController
   end
 
   def update
-    @garden = Garden.find(params[:id])
-    flash.notice = "Your garden has been updated."
-    redirect_to edit_garden_path(@garden)
+    
+
   end
 end

@@ -17,6 +17,12 @@
 
 .draggable {
   position:absolute;
+  z-index:1;
+}
+
+.active {
+  position: absolute;
+  z-index: 2;
 }
 
 .draggable.green,
