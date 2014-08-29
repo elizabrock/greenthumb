@@ -1,0 +1,14 @@
+               List of relations
+ Schema |       Name        |   Type   | Owner  
+--------+-------------------+----------+--------
+ public | categories        | table    | carter
+ public | categories_id_seq | sequence | carter
+ public | gardens           | table    | carter
+ public | gardens_id_seq    | sequence | carter
+ public | schema_migrations | table    | carter
+ public | users             | table    | carter
+ public | users_id_seq      | sequence | carter
+ public | varieties         | table    | carter
+ public | varieties_id_seq  | sequence | carter
+(9 rows)
+

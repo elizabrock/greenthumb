@@ -17,8 +17,10 @@
 /     .large-6.large-centered.columns
 /       %a{:class => 'button'} Submit
 
-= simple_form_for @user, url: password_reset_path(@user), :html => {:method => :put} do |f|
-  = f.input :email
-  = f.input :password
+= simple_form_for @user, url: password_reset_path(@token), :html => {:method => :patch}, :defaults => {:required => true} do |f|
+  %h5= @user.email
+  = f.input :email, :as => :hidden, :input_html => { :value => @user.email }
+  = f.input :new_password, :autocomplete => false
   = f.input :password_confirmation
+  = f.input :token, :as => :hidden, :input_html => { :value => @token }
   = f.submit "Submit"
