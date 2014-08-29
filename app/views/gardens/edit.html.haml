@@ -17,10 +17,4 @@
       %section{ role: "tabpanel", "aria-hidden" => "true", class: "content", id: "panel-plants" }
         %h3 This is where the plants navigation will go.
   .navigable
-    %h2 This is where the garden grid will go.
-    %h1= @garden.name
-    %table{:border => 1}
-      - @garden.width.times do
-        %tr
-          - @garden.height.times do
-            %td
+    = render @garden

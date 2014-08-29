@@ -5,12 +5,10 @@
   - else
     %ul
       - @gardens.each do |garden|
-        %li= link_to garden.name, edit_garden_path(garden)
-        %table{:border => 1}
-          - garden.width.times do
-            %tr
-              - garden.height.times do
-                %td
+        %li
+          = link_to edit_garden_path(garden) do
+            = render garden
+
 .right_column
   - if @gardens.empty?
     = image_tag "http://placehold.it/150x150", class: "left"
