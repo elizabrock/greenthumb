@@ -19,8 +19,8 @@
 # The user clicks on a plant category
 # The drop down list shows all of the plant varieties for the selected category
 
-feature "User views plant varieties" do
-  background do
+feature "User views plant varieties", :js => true do
+  scenario "Happy path - user finds what they're looking for" do
     @tomatoes = Fabricate(:category, name: "Tomatoes", edible: true)
     Fabricate(:category, name: "Squash", edible: true)
     Fabricate(:variety, name: "Cherry", description: "some description", category: @tomatoes)
@@ -30,28 +30,28 @@ feature "User views plant varieties" do
     login_as @user
     visit edit_garden_path(@garden)
     click_on "Plants"
-    click_on "Add"
-  end
-
-  scenario "Happy path - user finds what they're looking for" do
-    pending "Further implementation"
-    Category.count.should == 2
-    Category.first.name.should == "Tomatoes"
-    page.should have_content("Tomatoes")
-    page.should have_content("Squash")
-    page.select "Tomatoes"
+    select "Tomatoes"
     page.should have_content("Cherry")
     page.should have_content("Grape")
   end
 
   scenario "No categories exist" do
-    pending "Further implementation"
-    page.should have_content("No plants available")
+    @user = Fabricate(:user)
+    @garden = Fabricate(:garden)
+    login_as @user
+    visit edit_garden_path(@garden)
+    click_on "Plants"
+    page.should have_css("option:first-child", text: "No plants available")
   end
 
   scenario "No variety for selected category" do
-    pending "Further implementation"
-    click_on "Tomatoes"
-    page.should have_content("No plant varieties")
+    Fabricate(:category, name: "Tomatoes", edible: true)
+    @user = Fabricate(:user)
+    @garden = Fabricate(:garden)
+    login_as @user
+    visit edit_garden_path(@garden)
+    click_on "Plants"
+    select "Tomatoes"
+    page.should have_content("No varieties exist")
   end
 end

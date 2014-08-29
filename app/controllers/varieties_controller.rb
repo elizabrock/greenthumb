@@ -6,6 +6,7 @@ class VarietiesController < ApplicationController
     respond_to do |format|
       format.json { render json: @category.varieties }
     end
+  end
 
   def show
     @variety = Variety.find(params[:id])

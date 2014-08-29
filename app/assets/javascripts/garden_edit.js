@@ -4,8 +4,6 @@
   $(document).ready(init);
 
   function init(){
-    // $.ajax(url: "/categories/categoryid/varieties".done (html) ->
-    //   $("#results").append html
 
     $('.category_dropdown').change(function(){
       // render the varieties
@@ -16,13 +14,17 @@
         type: "GET",
         dataType: "json",
         success: function(varieties){
-            $('#varieties_list').empty();
-
-            varieties.forEach (function(variety){
-              var variety_link = $("<a>");
-              $(variety_link).attr("href", "#").append(variety.name);
-              $('#varieties_list').append(variety_link);
-            });
+            if(varieties.length) {
+              $('#varieties_list').empty();
+              varieties.forEach (function(variety){
+                var variety_link = $("<a>");
+                $(variety_link).attr("href", "#").append(variety.name);
+                $('#varieties_list').append(variety_link);
+              });
+            }
+            else {
+              $('#varieties_list').append("<p>No varieties exist</p>")
+            }
           }})
         });
 
