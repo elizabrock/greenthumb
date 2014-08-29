@@ -4,7 +4,7 @@ feature "User edits an existing garden" do
     @user1 = Fabricate(:user)
     @user2 = Fabricate(:user)
     @garden = Fabricate(:garden, user: @user1, name: "User1s Garden")
-   end
+  end
 
   scenario "when the user edits the garden that is intially created for them" do
     login_as @user1
@@ -20,14 +20,15 @@ feature "User edits an existing garden" do
   end
 
   scenario "a user tries to access another user's garden edit page" do
+    @garden2 = Fabricate(:garden, user: @user1)
     login_as @user2
-    visit '/gardens/1/edit'
+    visit edit_garden_path(@garden2)
     expect(page.current_path).to eq '/gardens'
   end
 
   scenario "a non logged in user tries to access another user's garden edit page" do
-    visit '/gardens/1/edit'
-    expect(page.current_path).to eq '/user_session/new'
+    visit edit_garden_path(@garden)
+    expect(page.current_path).to eq '/'
   end
 
 end

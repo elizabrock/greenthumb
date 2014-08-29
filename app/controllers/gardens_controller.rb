@@ -8,7 +8,7 @@ class GardensController < ApplicationController
   end
 
   def edit
-    if @garden = current_user.gardens.find(params[:id])
+    if @garden = current_user.gardens.find_by_id(params[:id])
     else
       flash.notice = "The garden could not be found."
       redirect_to gardens_path
@@ -32,5 +32,5 @@ class GardensController < ApplicationController
   def garden_params
     params.require(:garden).permit(:name, :height, :width)
   end
-  
+
 end
