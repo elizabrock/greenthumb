@@ -15,6 +15,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def update
+    if params[:password].blank?
+      params.delete(:password)
+    end
+    if current_user.update!(user_params)
+      flash.notice = "Profile has been updated."
+      redirect_to :action => :edit
+    end
+  end
+
   protected
 
   def user_params

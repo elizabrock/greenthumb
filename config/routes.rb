@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   end
   resources :gardens, except: [:new]
   resource :user_session, only: [:new, :create, :destroy]
-  resource :user, only: [:new, :create]
+  resource :user, except: [:destroy]
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
