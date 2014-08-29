@@ -28,6 +28,14 @@ main {
   .left_column, .right_column {
     @include grid-column(6);
   }
+
+  .left_navigation, .right_navigation {
+    @include grid-column(4);
+  }
+
+  .navigable {
+    @include grid-column(8);
+  }
 }
 
 footer {
@@ -39,6 +47,14 @@ footer {
     @include button($padding: $button-sml, $bg: $vapor);
   }
 }
+
+//garden plot///
+
+td {
+  width: 30px;
+  height: 30px;
+}
+
 
 // Buttons
 

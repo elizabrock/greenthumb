@@ -15,6 +15,7 @@
 //= require jquery-ui
 //= require foundation/foundation
 //= require foundation/foundation.alert
+//= require foundation/foundation.tab
 //= require turbolinks
 //= require_tree .
 

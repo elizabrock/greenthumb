@@ -29,6 +29,6 @@ feature "User views a specific plant variety" do
   scenario "displays details of a plant variety" do
     page.should have_content("Yukon")
     page.should have_content("Not Cornelius")
-    current_path.should eq category_variety_path(@category_id, @yukon.id)
+    current_path.should eq edit_category_variety_path(@category_id, @yukon.id)
   end
 end
