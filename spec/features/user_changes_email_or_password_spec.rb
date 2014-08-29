@@ -7,7 +7,7 @@
 # User can edit email and password
 # New email or password should be saved to Database
 
-feature "User changes profile email" do
+feature "User changes email and password" do
   background do
     @user = Fabricate(:user, email: "eliza@example.com", password: "password1")
     login_as @user
@@ -30,13 +30,6 @@ feature "User changes profile email" do
     click_on "Save"
     User.authenticate("adam@example.com", "password1").should_not be_nil
     page.should have_content("Profile has been updated.")
-  end
-end
-
-feature "User changes profile password" do
-  background do
-    @user = Fabricate(:user, email: "eliza@example.com", password: "password1")
-    login_as @user
   end
 
   scenario "with correct password (Happy Path)" do
