@@ -9,8 +9,8 @@
 feature "admin gives a user admin rights" do
 
   background do
-    @admin = Fabricate(:user, email: "will@nss.com", password: "password", admin: true)
     @user = Fabricate(:user, email: "matt@nss.com", password: "password", admin: false)
+    @admin = Fabricate(:user, email: "will@nss.com", password: "password", admin: true)
   end
 
   scenario "happy path" do
@@ -21,12 +21,10 @@ feature "admin gives a user admin rights" do
     click_button "Sign In"
     current_path.should == gardens_path
     click_link "Manage Users"
+    current_path.should == administrators_path
     page.should have_content("matt@nss.com")
     page.should have_content("will@nss.com")
-    click_link "matt@nss.com"
-    current_path.should == edit_user_path
-    # check "admin"
-    click_on "Update Administration Privileges"
+    click_on "#matt@nss.com"
     page.should have_content("administration privileges of matt@nss.com have been updated.")
     current_path.should == users_path
   end
