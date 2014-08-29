@@ -1,5 +1,9 @@
 class GardensController < ApplicationController
 
+  def index
+    @gardens = current_user.gardens.all
+  end
+
   def create
     garden = current_user.gardens.create!
     flash.notice = "Your garden has been created!"
