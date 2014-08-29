@@ -8,13 +8,12 @@ class GardensController < ApplicationController
   end
 
   def edit
-    if @garden = current_user.gardens.find_by_id(params[:id])
-    else
+    @garden = current_user.gardens.find_by_id(params[:id])
+    if @garden.nil?
       flash.notice = "The garden could not be found."
       redirect_to gardens_path
     end
   end
-
 
   def update
     @garden = current_user.gardens.find(params[:id])
