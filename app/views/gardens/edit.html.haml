@@ -7,12 +7,11 @@
         = link_to "Plants", "#panel-plants", role: "tab", tabindex: "0", "aria-selected" => "false", controls: "panel-plants"
     .tabs-content
       %section{ role: "tabpanel", "aria-hidden" => "false", class: "content active", id: "panel-design" }
-        = simple_form_for @garden, url: "#" do |f|
+        = simple_form_for @garden do |f|
           = f.input :name, label: "Garden Name"
           = f.input :height
           = f.input :width
-          -# Skipping the button for now, as we aren't implementing edit
-
+          = f.submit "Save Changes"
         %hr
         = button_to("Delete This Garden", @garden, method: :delete, data: { confirm: "Are you sure?"}, class: "button tiny alert", id: "garden_delete" )
       %section{ role: "tabpanel", "aria-hidden" => "true", class: "content", id: "panel-plants" }

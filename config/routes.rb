@@ -8,11 +8,9 @@ Rails.application.routes.draw do
   resources :categories, except: :destroy do
     resources :varieties, except: [:show, :index]
   end
-
-  resources :gardens, except: [:new, :update]
+  resources :gardens, except: [:new]
   resource :user_session, only: [:new, :create, :destroy]
   resource :user, only: [:new, :create]
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
