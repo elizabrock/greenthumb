@@ -15,8 +15,7 @@
 //= require foundation/foundation
 //= require foundation/foundation.alert
 //= require foundation/foundation.tab
-//= require turbolinks
-//= require garden_edit.js
+//= require garden_edit
 //= require_self
 
 $(function(){ $(document).foundation(); });

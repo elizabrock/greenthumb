@@ -6,12 +6,11 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :categories, except: :destroy do
-    resources :varieties, only: [:new, :create, :index]
+    resources :varieties, except: [:show]
   end
-
-  resources :gardens, except: [:new, :update]
+  resources :gardens, except: [:new]
   resource :user_session, only: [:new, :create, :destroy]
-  resource :user, only: [:new, :create]
+  resource :user, except: [:destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

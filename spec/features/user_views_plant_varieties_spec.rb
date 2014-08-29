@@ -20,15 +20,21 @@
 # The drop down list shows all of the plant varieties for the selected category
 
 feature "User views plant varieties", :js => true do
+  before do
+    Capybara.current_driver = :poltergeist
+  end
+  after do
+    Capybara.use_default_driver
+  end
   scenario "Happy path - user finds what they're looking for" do
-    @tomatoes = Fabricate(:category, name: "Tomatoes", edible: true)
+    tomatoes = Fabricate(:category, name: "Tomatoes", edible: true)
     Fabricate(:category, name: "Squash", edible: true)
-    Fabricate(:variety, name: "Cherry", description: "some description", category: @tomatoes)
-    Fabricate(:variety, name: "Grape", description: "some description", category: @tomatoes)
-    @user = Fabricate(:user)
-    @garden = Fabricate(:garden)
-    login_as @user
-    visit edit_garden_path(@garden)
+    Fabricate(:variety, name: "Cherry", description: "some description", category: tomatoes)
+    Fabricate(:variety, name: "Grape", description: "some description", category: tomatoes)
+    user = Fabricate(:user)
+    garden = Fabricate(:garden, user: user)
+    login_as user
+    visit edit_garden_path(garden)
     click_on "Plants"
     select "Tomatoes"
     page.should have_content("Cherry")
@@ -36,20 +42,20 @@ feature "User views plant varieties", :js => true do
   end
 
   scenario "No categories exist" do
-    @user = Fabricate(:user)
-    @garden = Fabricate(:garden)
-    login_as @user
-    visit edit_garden_path(@garden)
+    user = Fabricate(:user)
+    garden = Fabricate(:garden, user: user)
+    login_as user
+    visit edit_garden_path(garden)
     click_on "Plants"
     page.should have_css("option:first-child", text: "No plants available")
   end
 
   scenario "No variety for selected category" do
     Fabricate(:category, name: "Tomatoes", edible: true)
-    @user = Fabricate(:user)
-    @garden = Fabricate(:garden)
-    login_as @user
-    visit edit_garden_path(@garden)
+    user = Fabricate(:user)
+    garden = Fabricate(:garden, user: user)
+    login_as user
+    visit edit_garden_path(garden)
     click_on "Plants"
     select "Tomatoes"
     page.should have_content("No varieties exist")

@@ -1,4 +1,8 @@
+%h1= "Editing " + @variety.full_title
+
 = simple_form_for @variety, url: category_variety_path(@category, @variety) do |f|
   = f.input :name
   = f.input :description
   = f.submit "Save Changes"
+
+= button_to "Delete Variety", category_variety_path(@category, @variety), method: :delete, data: { confirm: "Are you sure?"}, class: "small button alert"
