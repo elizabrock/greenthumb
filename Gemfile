@@ -32,6 +32,5 @@ group :test do
   gem 'database_cleaner'
   gem 'fabrication'
   gem 'launchy'
-  gem 'pry-rails'
   gem 'shoulda'
 end
