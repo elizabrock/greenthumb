@@ -23,7 +23,8 @@ RSpec.describe Garden, :type => :model do
     end
 
     context "if the garden being created has no values set" do
-      let(:garden){ Garden.create!(user: Fabricate(:user)) }
+      let(:user){ Fabricate(:user) }
+      let(:garden){ Fabricate(:garden, user: user) }
 
       it "should have the default height" do
         garden.height.should == 10
@@ -31,8 +32,20 @@ RSpec.describe Garden, :type => :model do
       it "should have the default width" do
         garden.width.should == 10
       end
-      it "should have a default name" do
-        garden.name.should == "First Garden"
+      context "and it is the first garden" do
+        it "should have a default name of First Garden" do
+          garden.name.should == "First Garden"
+        end
+      end
+      context "and it is the fifth garden" do
+        before do
+          4.times do
+            Fabricate(:garden, user: user)
+          end
+        end
+        it "should have a default name of 5th Garden" do
+          garden.name.should == "5th Garden"
+        end
       end
     end
   end

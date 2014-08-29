@@ -1,6 +1,10 @@
 class GardensController < ApplicationController
   before_filter :require_login
 
+  def index
+    @gardens = current_user.gardens.all
+  end
+
   def create
     garden = current_user.gardens.create!
     flash.notice = "Your garden has been created!"
@@ -26,10 +30,16 @@ class GardensController < ApplicationController
     end
   end
 
+  def destroy
+    garden = Garden.find(params[:id])
+    garden.destroy!
+    flash.notice = "Your garden has been deleted."
+    redirect_to root_path
+  end
+
   private
 
   def garden_params
     params.require(:garden).permit(:name, :height, :width)
   end
-
 end

@@ -121,12 +121,12 @@ $success-color: #81c341;
 // $warning-color: #f08a24;
 $info-color: #a0d3e8;
 
-// $white       : #FFFFFF;
+$white       : #FFFFFF;
 // $ghost       : #FAFAFA;
-// $snow        : #F9F9F9;
+$snow        : #F9F9F9;
 // $vapor       : #F6F6F6;
 // $white-smoke : #F5F5F5;
-// $silver      : #EFEFEF;
+$silver      : #EFEFEF;
 // $smoke       : #EEEEEE;
 // $gainsboro   : #DDDDDD;
 // $iron        : #CCCCCC;
@@ -1299,12 +1299,12 @@ $include-html-form-classes: true;
 // 31. Tabs
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-tabs-classes: $include-html-classes;
+$include-html-tabs-classes: true;
 
 // $tabs-navigation-padding: rem-calc(16);
-// $tabs-navigation-bg-color: $silver  ;
-// $tabs-navigation-active-bg-color: $white;
-// $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
+$tabs-navigation-bg-color: $white;
+$tabs-navigation-active-bg-color: $silver;
+$tabs-navigation-hover-bg-color: $snow;
 // $tabs-navigation-font-color: $jet;
 // $tabs-navigation-active-font-color: $tabs-navigation-font-color;
 // $tabs-navigation-font-size: rem-calc(16);
@@ -1442,4 +1442,16 @@ $include-html-form-classes: true;
 // $include-accessibility-classes: true;
 
 @import 'foundation';
+
+// Tab Customization
+ul.tabs .tab-title > a {
+  outline: 0;
+}
+
+.tabs-content section.active {
+  background-color: $tabs-navigation-active-bg-color;
+  padding: 0.5em;
+}
+
 @import 'greenthumb_layout';
+@import 'gardens';

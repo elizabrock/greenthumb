@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :categories, except: :destroy do
-    resources :varieties, only: [:new, :create, :show]
+    resources :varieties, except: [:show, :index]
   end
-  resources :gardens, only: [:index, :create, :edit, :update]
+  resources :gardens, except: [:new]
   resource :user_session, only: [:new, :create, :destroy]
   resource :user, only: [:new, :create]
   # Example of regular route:
