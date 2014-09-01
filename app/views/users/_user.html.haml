@@ -1,3 +1,6 @@
 %li
   =user.email
-  =button_to "Make Admin", administrator_path(user), :id => user.email
+  - if user.admin
+    =button_to "Remove Admin Privileges", administrator_path(user), :method => :put, :id => user.email
+  -else
+    =button_to "Make Admin", administrator_path(user), :method => :put, :id => user.email

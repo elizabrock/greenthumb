@@ -21,11 +21,22 @@ feature "admin gives a user admin rights" do
     click_button "Sign In"
     current_path.should == gardens_path
     click_link "Manage Users"
-    current_path.should == administrators_path
+    current_path.should == users_path
     page.should have_content("matt@nss.com")
     page.should have_content("will@nss.com")
-    click_on "#matt@nss.com"
+    click_on "matt@nss.com"
     page.should have_content("administration privileges of matt@nss.com have been updated.")
     current_path.should == users_path
   end
+
+  scenario "non admin cannot manage users" do
+    visit '/'
+    click_link "Sign In"
+    fill_in "Email", with: "matt@nss.com"
+    fill_in "Password", with: "password"
+    click_button "Sign In"
+    current_path.should == gardens_path
+    page.should have_no_content "Manage Users"
+  end
+  
 end

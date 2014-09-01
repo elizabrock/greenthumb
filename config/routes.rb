@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   resources :gardens, only: [:index, :create, :edit]
   resource :user_session, only: [:new, :create, :destroy]
   resource :user, only: [:new, :create]
-  resources :administrators, only: [:index, :update]
+  resources :users, only: :index
+  resources :administrators, only: :update
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
