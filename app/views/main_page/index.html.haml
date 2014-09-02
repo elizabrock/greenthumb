@@ -1,0 +1,4 @@
+%h1 Student Caller
+= link_to "Add Student", new_student_path, class: "button"
+= button_to "Select student", call_on_student_path, class: "button"
+%ul#students= render @students

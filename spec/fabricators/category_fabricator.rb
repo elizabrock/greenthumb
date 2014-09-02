@@ -1,2 +1,0 @@
-Fabricator(:category) do
-end

@@ -16,6 +16,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'simple_form'
 gem 'sorcery'
 gem 'spring',        group: :development
+gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
@@ -24,12 +25,7 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'codeclimate-test-reporter', require: false
-  gem 'database_cleaner'
   gem 'fabrication'
   gem 'launchy'
-  gem 'poltergeist'
-  gem 'pry-rails'
   gem 'shoulda'
 end

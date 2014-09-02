@@ -1,0 +1,4 @@
+%h1 New Student
+= simple_form_for @student, url: student_path do |f|
+  = f.input :name
+  = f.submit "Submit"

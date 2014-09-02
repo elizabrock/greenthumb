@@ -5,6 +5,6 @@ addons:
   postgresql: "9.3"
 before_script:
   - cp config/database.yml.example config/database.yml
-  - psql -c 'create database greenthumb_test;' -U postgres
+  - psql -c 'create database student_caller_test;' -U postgres
 
 script: 'CODECLIMATE_REPO_TOKEN=61a60a7d49d896226c4aac453d26b2860ddfc73a290e6ae45be69769c3712aa6 xvfb-run bundle exec rake'
