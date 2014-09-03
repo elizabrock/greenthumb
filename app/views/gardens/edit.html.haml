@@ -1,0 +1,29 @@
+#garden
+  .left_navigation
+    %ul.tabs{ "data-tab" => "", role: "tablist" }
+      %li.tab-title.active{ role: "presentational" }
+        = link_to "Design", "#panel-design", role: "tab", tabindex: "0", "aria-selected" => "false", controls: "panel-design"
+      %li.tab-title{ role: "presentational" }
+        = link_to "Plants", "#panel-plants", role: "tab", tabindex: "0", "aria-selected" => "false", controls: "panel-plants"
+    .tabs-content
+      %section{ role: "tabpanel", "aria-hidden" => "false", class: "content active", id: "panel-design" }
+        = simple_form_for @garden do |f|
+          = f.input :name, label: "Garden Name"
+          = f.input :height
+          = f.input :width
+          = f.submit "Save Changes"
+        %hr
+        = button_to("Delete This Garden", @garden, method: :delete, data: { confirm: "Are you sure?"}, class: "button tiny alert", id: "garden_delete" )
+      %section{ role: "tabpanel", "aria-hidden" => "true", class: "content", id: "panel-plants" }
+        - category_menu_title = @categories.count > 0 ? "Select a Category" : "No plants available"
+        %form
+          %label{:for => "my_category_select"} Plant Category
+          %select{:class => "category_dropdown", :id => "my_category_select"}
+            %option= category_menu_title
+            - @categories.each do |category|
+              %option{:value => "#{category.id}"}= category.name
+
+        #varieties_list
+
+  .navigable
+    = render @garden

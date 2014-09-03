@@ -69,9 +69,9 @@
 // $base-line-height: 150%;
 
 // We use this to control whether or not CSS classes come through in the gem files.
-$include-html-classes: true;
+$include-html-classes: false;
 // $include-print-styles: true;
-$include-html-global-classes: $include-html-classes;
+$include-html-global-classes: true;
 
 // b. Grid
 // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -99,7 +99,8 @@ $include-html-global-classes: $include-html-classes;
 // We use these to control various global styles
 // $body-bg: $white;
 // $body-font-color: $jet;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: "museo-sans-rounded", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+// $font-weight-normal:normal;
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
 
@@ -113,19 +114,21 @@ $include-html-global-classes: $include-html-classes;
 // $last-child-float: $opposite-direction;
 
 // We use these as default colors throughout
-// $primary-color: #008CBA;
-// $secondary-color: #e7e7e7;
+$primary-color: #1e9eb2;
+$secondary-color: #00b09a;
 // $alert-color: #f04124;
-// $success-color: #43AC6A;
+$success-color: #81c341;
 // $warning-color: #f08a24;
-// $info-color: #a0d3e8;
+$info-color: #a0d3e8;
 
-// $white       : #FFFFFF;
+// A nice beigey yellow: #f9f9f0
+
+$white       : #FFFFFF;
 // $ghost       : #FAFAFA;
-// $snow        : #F9F9F9;
+$snow        : #F9F9F9;
 // $vapor       : #F6F6F6;
 // $white-smoke : #F5F5F5;
-// $silver      : #EFEFEF;
+$silver      : #EFEFEF;
 // $smoke       : #EEEEEE;
 // $gainsboro   : #DDDDDD;
 // $iron        : #CCCCCC;
@@ -193,10 +196,10 @@ $include-html-global-classes: $include-html-classes;
 // e. Typography
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-type-classes: $include-html-classes;
+$include-html-type-classes: true;
 
 // We use these to control header font styles
-// $header-font-family: $body-font-family;
+$header-font-family: "museo", $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
 // $header-font-color: $jet;
@@ -333,7 +336,7 @@ $include-html-global-classes: $include-html-classes;
 // 02. Alert Boxes
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-alert-classes: $include-html-classes;
+$include-html-alert-classes: true;
 
 // We use this to control alert padding.
 // $alert-padding-top: rem-calc(14);
@@ -421,13 +424,13 @@ $include-html-global-classes: $include-html-classes;
 // 05. Buttons
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-button-classes: $include-html-classes;
+$include-html-button-classes: true;
 
 // We use these to build padding for buttons.
-// $button-tny: rem-calc(10);
-// $button-sml: rem-calc(14);
-// $button-med: rem-calc(16);
-// $button-lrg: rem-calc(18);
+$button-tny: rem-calc(8);
+$button-sml: rem-calc(10);
+$button-med: rem-calc(14);
+$button-lrg: rem-calc(16);
 
 // We use this to control the display property.
 // $button-display: inline-block;
@@ -608,7 +611,7 @@ $include-html-global-classes: $include-html-classes;
 // 11. Forms
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-form-classes: $include-html-classes;
+$include-html-form-classes: true;
 
 // We use this to set the base for lots of form spacing and positioning styles
 // $form-spacing: rem-calc(16);
@@ -799,6 +802,8 @@ $include-html-global-classes: $include-html-classes;
 
 // 18. Off-canvas
 // - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// $include-html-off-canvas-classes: $include-html-classes;
 
 // $include-html-off-canvas-classes: $include-html-classes;
 
@@ -1296,12 +1301,12 @@ $include-html-global-classes: $include-html-classes;
 // 31. Tabs
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-tabs-classes: $include-html-classes;
+$include-html-tabs-classes: true;
 
 // $tabs-navigation-padding: rem-calc(16);
-// $tabs-navigation-bg-color: $silver  ;
-// $tabs-navigation-active-bg-color: $white;
-// $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
+$tabs-navigation-bg-color: $white;
+$tabs-navigation-active-bg-color: $silver;
+$tabs-navigation-hover-bg-color: $snow;
 // $tabs-navigation-font-color: $jet;
 // $tabs-navigation-active-font-color: $tabs-navigation-font-color;
 // $tabs-navigation-font-size: rem-calc(16);
@@ -1397,8 +1402,6 @@ $include-html-global-classes: $include-html-classes;
 // $topbar-link-font-family: $body-font-family;
 // $topbar-link-text-transform: none;
 // $topbar-link-padding: $topbar-height / 3;
-// $topbar-back-link-size: $h5-font-size;
-// $topbar-link-dropdown-padding: 20px;
 
 // $topbar-button-font-size: 0.75rem;
 // $topbar-button-top: 7px;
@@ -1441,3 +1444,16 @@ $include-html-global-classes: $include-html-classes;
 // $include-accessibility-classes: true;
 
 @import 'foundation';
+
+// Tab Customization
+ul.tabs .tab-title > a {
+  outline: 0;
+}
+
+.tabs-content section.active {
+  background-color: $tabs-navigation-active-bg-color;
+  padding: 0.5em;
+}
+
+@import 'greenthumb_layout';
+@import 'gardens';
