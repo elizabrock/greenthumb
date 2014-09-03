@@ -2,6 +2,12 @@ class VarietiesController < ApplicationController
 
   before_action :load_category
 
+  def index
+    respond_to do |format|
+      format.json { render json: @category.varieties }
+    end
+  end
+
   def new
     @variety = Variety.new
   end

@@ -1,5 +1,5 @@
 def login_as(user)
- if Capybara.current_driver == Capybara.javascript_driver
+  if Capybara.current_driver.in? [:webkit, :poltergeist]
     visit '/'
     click_link "Sign In"
     fill_in "Email", with: user.email

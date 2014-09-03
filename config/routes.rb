@@ -5,13 +5,15 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
+  resources :administrators, only: :update
   resources :categories, except: :destroy do
-    resources :varieties, except: [:show, :index]
+    resources :varieties, except: [:show]
   end
   resources :gardens, except: [:new]
-  resource :user_session, only: [:new, :create, :destroy]
-  resource :user, except: [:destroy]
   resources :password_resets, except: [:index, :show, :destroy]
+  resource :user, except: [:destroy]
+  resources :users, only: [:index]
+  resource :user_session, only: [:new, :create, :destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
