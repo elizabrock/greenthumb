@@ -1,32 +1,33 @@
-greenthumb
+GreenThumb
 ==========
 
 The NSS Cohort 5 Intro to Rails Project
 
+[![Build Status](https://travis-ci.org/elizabrock/greenthumb.png?branch=master)](https://travis-ci.org/elizabrock/greenthumb)
+[![Code Climate](https://codeclimate.com/github/elizabrock/greenthumb.png)](https://codeclimate.com/github/elizabrock/greenthumb)
+[![Code Climate](https://codeclimate.com/github/elizabrock/greenthumb/coverage.png)](https://codeclimate.com/github/elizabrock/greenthumb)
 
-## README outline from `rails new`
+## Ruby Version
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* 2.1.2
 
-Things you may want to cover:
+## System Dependencies
 
-* Ruby version
+* qt
+* libiconv
 
-* System dependencies
+## Setup and Configuration
 
-* Configuration
+1. _Copy_ config/database.yml.example to config/database.yml.
+2. (Optional) Make any changes to database.yml that are necessary for your database setup.
+3. Run `rake db:create:all`
+4. `rake db:migrate`
+5. Run the test suite: `rake`
 
-1. Copy config/database.yml.example to config/database.yml, and make any changes necessary for your database setup.
+## Services (job queues, cache servers, search engines, etc.)
 
-* Database creation: `rake db:create:all`
+None at this time.
 
-* Database initialization: `rake db:migrate`
+## Deployment Instructions
 
-* How to run the test suite: `rake`
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+We will fill this in once we deploy the application.

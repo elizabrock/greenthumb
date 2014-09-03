@@ -15,6 +15,7 @@
         - if logged_in?
           - unless request.path == root_path
             %li= link_to "< Back to Dashboard", root_path
+          %li= link_to "Profile", edit_user_path
           %li= link_to "Sign Out", user_session_path, method: :delete
         - else
           %li= link_to "Sign In", new_user_session_path
