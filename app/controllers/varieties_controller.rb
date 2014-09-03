@@ -44,7 +44,7 @@ class VarietiesController < ApplicationController
   protected
 
   def variety_params
-    params.require(:variety).permit(:name, :description)
+    params.require(:variety).permit(:name, :description, :side_image, :top_image)
   end
 
   def load_category

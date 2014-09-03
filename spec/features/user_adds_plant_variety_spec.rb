@@ -35,6 +35,17 @@ feature "User adds plant variety" do
     current_path.should eq category_path(@tomato)
   end
 
+  scenario "Happy path, creating a variety with an image" do
+    fill_in "Name", with: "Cherry"
+    fill_in "Description", with: "Small, sweet, and cherry-sized.  Red."
+    attach_file 'Top Image', 'spec/support/data/example_top_image.png'
+    attach_file 'Side Image', 'spec/support/data/example_side_image.png'
+    click_button "Create New Variety"
+    page.should have_content("Cherry variety has been created.")
+    find(".side_image")[:src].should include("thumb_example_side_image")
+    find(".top_image")[:src].should include("thumb_example_top_image")
+  end
+
   scenario "Name is not entered" do
     click_button "Create New Variety"
     page.should have_content("Variety could not be created.")

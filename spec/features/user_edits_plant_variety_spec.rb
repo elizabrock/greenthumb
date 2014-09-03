@@ -21,11 +21,11 @@ feature "User adds plant variety" do
 
   background do
     @tomato = Fabricate(:category, name: "tomato", edible: true)
-    @cherry_tomato = Fabricate(:variety, name: "cherry", description: "small and sweet", category_id: @tomato.id)
-    @beefsteak = Fabricate(:variety, name: "Beefsteak", description: "Good for sandwiches", category_id: @tomato.id)
-    @heirloom = Fabricate(:variety, name: "Heirloom", description: "Not necessarily red", category_id: @tomato.id)
+    @cherry_tomato = Fabricate(:variety, name: "cherry", description: "small and sweet", category: @tomato)
+    @beefsteak = Fabricate(:variety, name: "Beefsteak", description: "Good for sandwiches", category: @tomato)
+    @heirloom = Fabricate(:variety, name: "Heirloom", description: "Not necessarily red", category: @tomato)
 
-    visit category_path(@tomato.id)
+    visit category_path(@tomato)
     click_on "cherry"
   end
 
@@ -42,6 +42,31 @@ feature "User adds plant variety" do
     page.should have_content("Small, sweet, and cherry-sized.  Red.")
     page.should have_content("The Cherry variety has been updated.")
     current_path.should eq edit_category_variety_path(@cherry_tomato.category, @cherry_tomato)
+  end
+
+  scenario "Happy path, edit a variety that already has an image" do
+    image1 = File.open('spec/support/data/example_side_image.png')
+    image2 = File.open('spec/support/data/example_top_image.png')
+    @image_variety = Fabricate(:variety, category: @tomato, side_image: image1, top_image: image2)
+    visit edit_category_variety_path(@tomato, @image_variety)
+    find(".side_image")[:src].should include("thumb_example_side_image")
+    find(".top_image")[:src].should include("thumb_example_top_image")
+    fill_in "Name", with: "Best Tomato"
+    click_button "Save Changes"
+    page.should have_content("The Best Tomato variety has been updated.")
+    find(".side_image")[:src].should include("thumb_example_side_image")
+    find(".top_image")[:src].should include("thumb_example_top_image")
+  end
+
+  scenario "Happy path, edit a variety to add an image" do
+    page.should_not have_css(".side_image")
+    page.should_not have_css(".top_image")
+    attach_file 'Top Image', 'spec/support/data/example_top_image.png'
+    attach_file 'Side Image', 'spec/support/data/example_side_image.png'
+    click_button "Save Changes"
+    page.should have_content("The cherry variety has been updated.")
+    find(".side_image")[:src].should include("thumb_example_side_image")
+    find(".top_image")[:src].should include("thumb_example_top_image")
   end
 
   scenario "Name is not entered" do

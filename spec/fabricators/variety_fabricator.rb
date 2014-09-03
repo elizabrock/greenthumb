@@ -1,4 +1,4 @@
 Fabricator(:variety) do
-  # name        "MyString"
-  # description "MyString"
+  name "My Variety"
+  category
 end
