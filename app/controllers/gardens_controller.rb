@@ -43,9 +43,4 @@ class GardensController < ApplicationController
   def garden_params
     params.require(:garden).permit(:name, :height, :width)
   end
-
-  def update
-    
-
-  end
 end
