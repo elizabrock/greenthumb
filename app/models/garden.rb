@@ -1,8 +1,9 @@
 class Garden < ActiveRecord::Base
   before_create :populate_default_values
-  belongs_to :user
 
   belongs_to :user
+  has_many :circles
+
   validates_presence_of :user
 
   protected

@@ -1,7 +1,9 @@
 class Circle < ActiveRecord::Base
   before_create :populate_default_values
   belongs_to :garden
-  validates_presence_of :garden_id, :color
+  validates_presence_of :garden, :color
+
+  GREEN = "green"
 
   protected
 

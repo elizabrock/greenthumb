@@ -20,11 +20,11 @@ gem 'simple_form'
 gem 'sorcery'
 gem 'spring',        group: :development
 gem 'uglifier', '>= 1.3.0'
-gem 'poltergeist'
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'letter_opener'
+  gem 'pry-rails'
 end
 
 group :test do
@@ -35,6 +35,5 @@ group :test do
   gem 'fabrication'
   gem 'launchy'
   gem 'poltergeist'
-  gem 'pry-rails'
   gem 'shoulda'
 end
