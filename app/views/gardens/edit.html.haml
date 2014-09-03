@@ -26,6 +26,15 @@
         %hr
         = button_to("Delete This Garden", @garden, method: :delete, data: { confirm: "Are you sure?"}, class: "button tiny alert", id: "garden_delete" )
       %section{ role: "tabpanel", "aria-hidden" => "true", class: "content", id: "panel-plants" }
-        %h3 This is where the plants navigation will go.
+        - category_menu_title = @categories.count > 0 ? "Select a Category" : "No plants available"
+        %form
+          %label{:for => "my_category_select"} Plant Category
+          %select{:class => "category_dropdown", :id => "my_category_select"}
+            %option= category_menu_title
+            - @categories.each do |category|
+              %option{:value => "#{category.id}"}= category.name
+
+        #varieties_list
+
   .navigable
     = render @garden

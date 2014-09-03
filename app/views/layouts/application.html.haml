@@ -36,6 +36,8 @@
       = yield
     %footer
       = link_to "Manage Plant Categories", categories_path
+      - if logged_in? and current_user.admin?
+        = link_to "Manage Users", users_path
 
     = javascript_include_tag "application"
     = javascript_tag '$.fx.off = true;' if Rails.env.test?
