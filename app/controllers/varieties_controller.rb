@@ -2,6 +2,12 @@ class VarietiesController < ApplicationController
 
   before_action :load_category
 
+  def index
+    respond_to do |format|
+      format.json { render json: @category.varieties }
+    end
+  end
+
   def new
     @variety = Variety.new
   end
@@ -38,7 +44,7 @@ class VarietiesController < ApplicationController
   protected
 
   def variety_params
-    params.require(:variety).permit(:name, :description)
+    params.require(:variety).permit(:name, :description, :side_image, :top_image)
   end
 
   def load_category

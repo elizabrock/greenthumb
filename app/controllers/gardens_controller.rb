@@ -12,6 +12,7 @@ class GardensController < ApplicationController
   end
 
   def edit
+    @categories = Category.all
     @garden = current_user.gardens.find_by_id(params[:id])
     if @garden.nil?
       flash.notice = "The garden could not be found."
@@ -41,10 +42,5 @@ class GardensController < ApplicationController
 
   def garden_params
     params.require(:garden).permit(:name, :height, :width)
-  end
-
-  def update
-    
-
   end
 end

@@ -3,6 +3,12 @@
 = simple_form_for @variety, url: category_variety_path(@category, @variety) do |f|
   = f.input :name
   = f.input :description
+  = f.input :top_image, label: "Top Image"
+  - if @variety.top_image.present?
+    = image_tag @variety.top_image.url(:thumb), class: "top_image"
+  = f.input :side_image, label: "Side Image"
+  - if @variety.side_image.present?
+    = image_tag @variety.side_image.url(:thumb), class: "side_image"
   = f.submit "Save Changes"
 
 = button_to "Delete Variety", category_variety_path(@category, @variety), method: :delete, data: { confirm: "Are you sure?"}, class: "small button alert"
