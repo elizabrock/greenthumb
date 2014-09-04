@@ -1,6 +1,7 @@
 class VarietiesController < ApplicationController
 
   before_action :load_category
+  before_action :require_admin, only: [:edit, :update]
 
   def index
     respond_to do |format|
@@ -51,4 +52,10 @@ class VarietiesController < ApplicationController
     @category = Category.find(params[:category_id])
   end
 
+  def require_admin
+    unless current_user.admin?
+      flash.alert = "You are not authorized to view that page."
+      redirect_to gardens_path
+    end
+  end
 end
