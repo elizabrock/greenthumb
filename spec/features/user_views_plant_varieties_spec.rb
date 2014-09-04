@@ -20,12 +20,6 @@
 # The drop down list shows all of the plant varieties for the selected category
 
 feature "User views plant varieties", :js => true do
-  before do
-    Capybara.current_driver = :poltergeist
-  end
-  after do
-    Capybara.use_default_driver
-  end
   scenario "Happy path - user finds what they're looking for" do
     tomatoes = Fabricate(:category, name: "Tomatoes", edible: true)
     Fabricate(:category, name: "Squash", edible: true)

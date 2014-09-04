@@ -16,6 +16,14 @@
 # User remains on the current page if they choose not to delete the plan
 
 feature "User deletes a garden plan" do
+  before do
+    Capybara.current_driver = :webkit
+  end
+
+  after do
+    Capybara.use_default_driver
+  end
+
   background do
     @user = Fabricate(:user)
     login_as @user
