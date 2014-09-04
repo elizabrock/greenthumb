@@ -1,4 +1,4 @@
-# As a User
+# As a Admin
 # In order for user to be aware of all varieties of a plant
 # I want to view a specific plant variety
 #
@@ -8,20 +8,20 @@
 #
 # Usage:
 #
-#     User will click "Plants", select a specific Plant Category, then click a specific plant
-#     User will be greeted with a short profile of the variety including:
+#     Admin will click "Plants", select a specific Plant Category, then click a specific plant
+#     Admin will be greeted with a short profile of the variety including:
 #         Name
 #         Description
 #         Images
 #         Amazon URL
 
-feature "User views a specific plant variety" do
+feature "Admin views a specific plant variety" do
   background do
-    login_as Fabricate(:user)
+    login_as Fabricate(:admin)
     @potato = Fabricate(:category, name: "Potato", edible: true)
     @yukon = Fabricate(:variety, name: "Yukon", description: "Not Cornelius", category: @potato)
 
-    visit categories_path
+    visit admin_categories_path
     click_link "Potato"
     click_link "Yukon"
   end
@@ -29,6 +29,6 @@ feature "User views a specific plant variety" do
   scenario "displays details of a plant variety" do
     page.should have_content("Yukon")
     page.should have_content("Not Cornelius")
-    current_path.should eq edit_category_variety_path(@potato, @yukon)
+    current_path.should eq edit_admin_category_variety_path(@potato, @yukon)
   end
 end

@@ -21,7 +21,7 @@ feature "Admin edits plant variety" do
 
   def navigate_to_cherry_as_admin
     login_as Fabricate(:admin)
-    visit category_path(@tomato)
+    visit admin_category_path(@tomato)
     click_on "cherry"
   end
 
@@ -34,7 +34,7 @@ feature "Admin edits plant variety" do
 
   scenario "user attempts to edit plant variety" do
     login_as Fabricate(:user)
-    visit edit_category_variety_path(@tomato, @cherry_tomato)
+    visit edit_admin_category_variety_path(@tomato, @cherry_tomato)
     page.should have_content("You are not authorized to view that page.")
     current_path.should == gardens_path
   end
@@ -53,7 +53,7 @@ feature "Admin edits plant variety" do
     page.should have_content("Cherry")
     page.should have_content("Small, sweet, and cherry-sized.  Red.")
     page.should have_content("The Cherry variety has been updated.")
-    current_path.should eq edit_category_variety_path(@cherry_tomato.category, @cherry_tomato)
+    current_path.should eq edit_admin_category_variety_path(@cherry_tomato.category, @cherry_tomato)
   end
 
   scenario "Happy path, edit a variety that already has an image" do
@@ -61,7 +61,7 @@ feature "Admin edits plant variety" do
     image1 = File.open('spec/support/data/example_side_image.png')
     image2 = File.open('spec/support/data/example_top_image.png')
     @image_variety = Fabricate(:variety, category: @tomato, side_image: image1, top_image: image2)
-    visit edit_category_variety_path(@tomato, @image_variety)
+    visit edit_admin_category_variety_path(@tomato, @image_variety)
     find(".side_image")[:src].should include("thumb_example_side_image")
     find(".top_image")[:src].should include("thumb_example_top_image")
     fill_in "Name", with: "Best Tomato"
@@ -96,7 +96,7 @@ feature "Admin edits plant variety" do
     fill_in "Name", with: "Cherry"
     fill_in "Description", with: "Small, sweet, and cherry-sized.  Red."
     click_button "Save Changes"
-    visit category_path(@tomato)
+    visit admin_category_path(@tomato)
     click_on "Add New tomato Variety"
     fill_in "Name", with: "Cherry"
     fill_in "Description", with: "Small, sweet, and cherry-sized.  Red."

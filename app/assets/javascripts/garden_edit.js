@@ -18,7 +18,7 @@
               $('#varieties_list').empty();
               varieties.forEach (function(variety){
                 var variety_link = $("<a>");
-                $(variety_link).attr("href", "#").append(variety.name);
+                $(variety_link).attr("href", "#").append(variety.name + " (" + variety.description +")");
                 $('#varieties_list').append(variety_link);
               });
             }

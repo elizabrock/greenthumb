@@ -30,7 +30,7 @@ feature "User views plant varieties", :js => true do
     tomatoes = Fabricate(:category, name: "Tomatoes", edible: true)
     Fabricate(:category, name: "Squash", edible: true)
     Fabricate(:variety, name: "Cherry", description: "some description", category: tomatoes)
-    Fabricate(:variety, name: "Grape", description: "some description", category: tomatoes)
+    Fabricate(:variety, name: "Grape", description: "other description", category: tomatoes)
     user = Fabricate(:user)
     garden = Fabricate(:garden, user: user)
     login_as user
@@ -38,7 +38,9 @@ feature "User views plant varieties", :js => true do
     click_on "Plants"
     select "Tomatoes"
     page.should have_content("Cherry")
+    page.should have_content("some description")
     page.should have_content("Grape")
+    page.should have_content("other description")
   end
 
   scenario "No categories exist" do
