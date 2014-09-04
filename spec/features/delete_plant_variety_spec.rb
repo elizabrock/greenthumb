@@ -2,9 +2,9 @@ feature "User/Admin deletes plant variety" do
 
   background do
     @tomato = Fabricate(:category, name: "tomato", edible: true)
-    @cherry = Fabricate(:variety, name: "Cherry", description: "small", category_id: @tomato.id)
-    @brandywine = Fabricate(:variety, name: "Brandywine", description: "known for its flavor", category_id: @tomato.id)
-    @amish = Fabricate(:variety, name: "Amish", description: "sweet but can be bland", category_id: @tomato.id)
+    @cherry = Fabricate(:variety, name: "Cherry", description: "small", category: @tomato)
+    @brandywine = Fabricate(:variety, name: "Brandywine", description: "known for its flavor", category: @tomato)
+    @amish = Fabricate(:variety, name: "Amish", description: "sweet but can be bland", category: @tomato)
   end
 
   scenario "Happy path, deletes first variety" do

@@ -29,7 +29,7 @@ class VarietiesController < ApplicationController
   def update
     @variety = Variety.find(params[:id])
     if @variety.update(variety_params)
-      redirect_to edit_category_variety_path(@variety.category_id, @variety.id), notice: "The #{@variety.name} variety has been updated."
+      redirect_to edit_category_variety_path(@variety.category, @variety), notice: "The #{@variety.name} variety has been updated."
     else
       flash.now[:alert] = "Variety could not be updated."
       render :new
