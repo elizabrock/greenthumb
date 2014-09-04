@@ -1,4 +1,4 @@
-class CategoriesController < ApplicationController
+class Admin::CategoriesController < AdminController
   def index
     @categories = Category.all
   end
@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to categories_path, notice: "The #{@category.name} category has been created."
+      redirect_to admin_categories_path, notice: "The #{@category.name} category has been created."
     else
       flash.now[:alert] = "Category could not be created."
       render :new
@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
-      redirect_to categories_path, notice: "The #{@category.name} category has been updated."
+      redirect_to admin_categories_path, notice: "The #{@category.name} category has been updated."
     else
       flash.now[:alert] = "Your changes could not be saved."
       render :edit
