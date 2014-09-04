@@ -1,6 +1,7 @@
 feature "User/Admin deletes plant variety" do
 
   background do
+    login_as Fabricate(:user)
     @tomato = Fabricate(:category, name: "tomato", edible: true)
     @cherry = Fabricate(:variety, name: "Cherry", description: "small", category: @tomato)
     @brandywine = Fabricate(:variety, name: "Brandywine", description: "known for its flavor", category: @tomato)

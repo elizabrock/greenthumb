@@ -1,4 +1,8 @@
 feature "Adding a plant category" do
+  background do
+    login_as Fabricate(:user)
+  end
+
   scenario "Happy Path" do
     visit '/'
     click_on "Manage Plant Categories" # index

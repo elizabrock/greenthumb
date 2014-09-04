@@ -17,6 +17,7 @@
 
 feature "User views a specific plant variety" do
   background do
+    login_as Fabricate(:user)
     @potato = Fabricate(:category, name: "Potato", edible: true)
     @yukon = Fabricate(:variety, name: "Yukon", description: "Not Cornelius", category: @potato)
 

@@ -19,6 +19,7 @@
 feature "User adds plant variety" do
 
   background do
+    login_as Fabricate(:user)
     @tomato = Fabricate(:category, name: "Tomato", edible: true)
     visit categories_path
     click_link "Tomato"

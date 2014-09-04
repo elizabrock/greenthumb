@@ -15,6 +15,7 @@
 feature "Update a plant category" do
 
   background do
+    login_as Fabricate(:user)
     @tomato = Fabricate(:category, name: "tomato", edible: true)
   end
 

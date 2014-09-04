@@ -20,6 +20,7 @@
 feature "User adds plant variety" do
 
   background do
+    login_as Fabricate(:user)
     @tomato = Fabricate(:category, name: "tomato", edible: true)
     @cherry_tomato = Fabricate(:variety, name: "cherry", description: "small and sweet", category: @tomato)
     @beefsteak = Fabricate(:variety, name: "Beefsteak", description: "Good for sandwiches", category: @tomato)
