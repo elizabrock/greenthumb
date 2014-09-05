@@ -1,0 +1,6 @@
+%li
+  = user.email
+  = simple_form_for [:admin, user] do |f|
+    - user.toggle(:admin)
+    = f.input :admin
+    = f.submit (user.admin? ? "Make Admin" : "Remove Admin Privileges")

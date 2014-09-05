@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
-
-  def index
-    @users = User.all
-  end
+  skip_before_action :require_login, only: [:new, :create]
 
   def new
     @user = User.new

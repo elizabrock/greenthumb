@@ -1,0 +1,13 @@
+%h1= @category.name
+= link_to "Edit Plant Category", edit_admin_category_path(@category), class: "button small secondary"
+%hr
+
+%h2 #{@category.name} Varieties:
+%ul#varieties
+  - @category.varieties.each do |variety|
+    %li
+      = image_tag variety.side_image.url(:thumb), class: "side_image"
+      = image_tag variety.top_image.url(:thumb), class: "top_image"
+      = link_to variety.full_title, edit_admin_category_variety_path(@category, variety)
+
+= link_to "Add New #{@category.name} Variety", new_admin_category_variety_path(@category), class: "button small"
