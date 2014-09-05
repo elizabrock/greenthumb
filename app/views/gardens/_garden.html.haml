@@ -4,3 +4,17 @@
     %tr
       - garden.height.times do
         %td
+
+#side-view
+  %h2
+    %span(data-view=0) Front
+    View
+
+  %table{:border => 1}
+    - garden.width.times do
+      %tr
+        - garden.height.times do
+          %td
+
+  %button#rotate_left(data-direction='left') <
+  %button#rotate_right(data-direction='right') >

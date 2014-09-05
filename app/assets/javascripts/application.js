@@ -16,6 +16,7 @@
 //= require foundation/foundation.alert
 //= require foundation/foundation.tab
 //= require garden_edit
+//= require side_view
 //= require_self
 
 $(function(){ $(document).foundation(); });
