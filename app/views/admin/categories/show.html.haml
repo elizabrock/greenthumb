@@ -1,4 +1,6 @@
-%h1= @category.name
+%h1
+  = @category.name
+  = image_tag @category.side_image.url(:thumb), class: "side_image"
 = link_to "Edit Plant Category", edit_admin_category_path(@category), class: "button small secondary"
 %hr
 

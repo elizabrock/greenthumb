@@ -1,6 +1,5 @@
 class Category < ActiveRecord::Base
-  mount_uploader :side_image, PlantImageUploader
-  mount_uploader :top_image, PlantImageUploader
+  mount_uploader :side_image, CategoryImageUploader
 
   validates_presence_of :name
   has_many :varieties

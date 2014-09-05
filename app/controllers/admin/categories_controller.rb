@@ -38,6 +38,6 @@ class Admin::CategoriesController < AdminController
   protected
 
   def category_params
-    params.require(:category).permit(:name, :edible, :side_image, :top_image)
+    params.require(:category).permit(:name, :edible, :side_image)
   end
 end

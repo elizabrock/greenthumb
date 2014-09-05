@@ -16,12 +16,10 @@ feature "Adding a plant category" do
     click_on "Add Category"
     fill_in "Name", with: "Tomatoes"
     check "Edible"
-    attach_file 'Top Image', 'spec/support/data/example_top_image.png'
     attach_file 'Side Image', 'spec/support/data/example_side_image.png'
     click_on "Create Category"
     page.should have_content("The Tomatoes category has been created.")
-    find(".side_image")[:src].should include("thumb_example_side_image")
-    find(".top_image")[:src].should include("thumb_example_top_image")
+    find(".side_image")[:src].should include("example_side_image")
     current_path.should == admin_categories_path
     within("ul#categories") do
       page.should have_content("Tomatoes")
@@ -48,7 +46,6 @@ feature "Adding a plant category" do
     click_on "Create Category"
     page.should have_content("The Tomatoes category has been created.")
     find(".side_image")[:src].should include("default_side_image")
-    find(".top_image")[:src].should include("default_top_image")
     current_path.should == admin_categories_path
     within("ul#categories") do
       page.should have_content("Tomatoes")
