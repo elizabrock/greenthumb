@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903150428) do
+ActiveRecord::Schema.define(version: 20140905191422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20140903150428) do
     t.boolean  "edible"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "top_image"
+    t.string   "side_image"
   end
 
   create_table "gardens", force: true do |t|

@@ -16,8 +16,12 @@ feature "Adding a plant category" do
     click_on "Add Category"
     fill_in "Name", with: "Tomatoes"
     check "Edible"
+    attach_file 'Top Image', 'spec/support/data/example_top_image.png'
+    attach_file 'Side Image', 'spec/support/data/example_side_image.png'
     click_on "Create Category"
     page.should have_content("The Tomatoes category has been created.")
+    find(".side_image")[:src].should include("thumb_example_side_image")
+    find(".top_image")[:src].should include("thumb_example_top_image")
     current_path.should == admin_categories_path
     within("ul#categories") do
       page.should have_content("Tomatoes")
@@ -32,5 +36,23 @@ feature "Adding a plant category" do
     click_on "Create Category"
     page.should have_content("Category could not be created.")
     page.should have_error("can't be blank", on: "Name")
+  end
+
+  scenario "skipping the photo uploads" do
+    login_as Fabricate(:admin)
+    visit '/'
+    click_on "Manage Plant Categories"
+    click_on "Add Category"
+    fill_in "Name", with: "Tomatoes"
+    check "Edible"
+    click_on "Create Category"
+    page.should have_content("The Tomatoes category has been created.")
+    find(".side_image")[:src].should include("default_side_image")
+    find(".top_image")[:src].should include("default_top_image")
+    current_path.should == admin_categories_path
+    within("ul#categories") do
+      page.should have_content("Tomatoes")
+    end
+
   end
 end

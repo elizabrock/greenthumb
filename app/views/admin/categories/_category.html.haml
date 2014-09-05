@@ -1,1 +1,4 @@
-%li= link_to category.name, admin_category_path(category)
+%li
+  = link_to category.name, admin_category_path(category)
+  = image_tag category.side_image.url, class: "side_image"
+  = image_tag category.top_image.url, class: "top_image"
