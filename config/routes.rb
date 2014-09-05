@@ -18,9 +18,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :categories, only: [] do
-    # resources :varieties, only: [:index]
-  end
   resources :gardens, except: [:new]
   resources :password_resets, except: [:index, :show, :destroy]
   resource :user, except: [:destroy]
