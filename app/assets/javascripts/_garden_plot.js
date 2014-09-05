@@ -8,8 +8,9 @@ $(function(){
       color = this.classList[1];
     },
     appendTo: "body",
-    helper: "clone",
+    helper: "clone"
   });
+
 
   $( "#garden-plot" ).droppable({
     deactivate: function( event, ui ) {
@@ -17,13 +18,31 @@ $(function(){
     },
     drop: function( event, ui ) {
       var $shape = ui.draggable
-      var $dropped = $( '<div class="' + shape + ' ' + color + '"></div>' )
-      $dropped.appendTo( this );
-      $dropped.draggable({containment: "#garden-plot", grid: [ 15, 15 ]});
-      $dropped.resizable({
-        grid: 30,
-        containment: "#garden-plot"
-      });
+      var topPosition = ui.position.top - $('#garden-plot').position().top;
+      topPosition -= (topPosition % 15)
+      var leftPosition = ui.position.left - $('#garden-plot').position().left;
+      leftPosition -= (leftPosition % 15)
+      // var zIndex = $('#garden-plot').children().size();
+
+      var classes = ui.draggable[0].classList;
+      if ($.inArray('in-garden', classes) !== -1) {
+        console.log('stuff');
+      } else {
+        $( '<div class="' + shape + ' ' + color + ' in-garden" style="top:'+topPosition+'px;left:'+leftPosition+'px;"></div>' ).appendTo( this );
+        $('.in-garden').draggable({containment: "#garden-plot", grid: [ 15, 15 ]});
+        $( '.in-garden' ).resizable({
+          grid: 30,
+          containment: "#garden-plot"
+        });
+      }
+ 
+      // var $dropped = $( '<div class="' + shape + ' ' + color + ' in-garden" style="top:'+topPosition+'px;left:'+leftPosition+'px;"></div>' );
+      // $("#garden-plot").append($dropped);
+      // $('.in-garden').draggable({containment: "#garden-plot", grid: [ 15, 15 ]});
+      // $('.in-garden').resizable({
+      //   grid: 30,
+      //   containment: "#garden-plot"
+      // });
 
       var gardenId = $('#garden-plot').attr('data-id');
       var width = $shape.css('width');
