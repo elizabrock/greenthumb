@@ -17,6 +17,7 @@
 //= require foundation/foundation.alert
 //= require foundation/foundation.tab
 //= require garden_edit
+//= require _garden_plot
 //= require_self
 
 
