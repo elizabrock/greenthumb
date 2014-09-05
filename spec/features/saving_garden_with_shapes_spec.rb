@@ -1,18 +1,12 @@
 feature "Save garden", js: true do
-  before do
-    Capybara.current_driver = :poltergeist
-  end
   after do
     Capybara.use_default_driver
   end
 
-  background do
+  scenario "adding a shape, happy path" do
     @user = Fabricate(:user)
     login_as @user
     @garden = Fabricate(:garden, user: @user)
-  end
-
-  scenario "adding a shape, happy path" do
     visit edit_garden_path(@garden)
     green_circle = find(".circle.green")
     garden = find("#garden-plot")
@@ -34,14 +28,23 @@ feature "Save garden", js: true do
   end
 
   scenario "adding a shape, in the middle of the plot" do
-    pending "implementation"
+    Capybara.current_driver = :selenium
+    @user = Fabricate(:user)
+    login_as @user
+    @garden = Fabricate(:garden, user: @user)
     visit edit_garden_path(@garden)
-    brown_rectangle = find(".rectangle.brown")
-    garden = find("#garden-plot")
-    brown_rectangle.drag_to(garden, 50, 50)
+
+    garden_position = page.driver.evaluate_script("$('#garden-plot').offset();")
+    rectangle_position = page.driver.evaluate_script("$('.rectangle.brown').offset();")
+
+    px_down = garden_position['top'] + 100 - rectangle_position['top']
+    px_right = garden_position['left'] + 100 - rectangle_position['left']
+
+    find('.rectangle.brown').drag_by(px_down, px_right)
 
     wait_for_ajax
 
+    # binding.pry
     position = page.driver.evaluate_script("$('#garden-plot').find('.rectangle.brown').position();")
     position['top'].should == 50
     position['left'].should == 50
