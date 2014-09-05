@@ -35,5 +35,6 @@ group :test do
   gem 'fabrication'
   gem 'launchy'
   gem 'poltergeist'
+  gem 'selenium-webdriver'
   gem 'shoulda'
 end
