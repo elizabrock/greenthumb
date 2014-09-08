@@ -12,8 +12,10 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :update]
   end
 
-  resources :categories, only: [] do
-    resources :varieties, only: [:index]
+  namespace :api do
+    resources :categories, only:[] do
+      resources :varieties, only: [:index]
+    end
   end
 
   resources :gardens, except: [:new] do
