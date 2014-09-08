@@ -21,6 +21,7 @@
 
 feature "User views plant varieties", :js => true do
   scenario "Happy path - user finds what they're looking for" do
+
     tomatoes = Fabricate(:category, name: "Tomatoes", edible: true)
     Fabricate(:category, name: "Squash", edible: true)
     Fabricate(:variety, name: "Cherry", description: "some description", category: tomatoes)
@@ -47,6 +48,7 @@ feature "User views plant varieties", :js => true do
   end
 
   scenario "No variety for selected category" do
+
     Fabricate(:category, name: "Tomatoes", edible: true)
     user = Fabricate(:user)
     garden = Fabricate(:garden, user: user)
