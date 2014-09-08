@@ -14,13 +14,13 @@
           = f.submit "Save Changes"
         #shapes-menu
           .circles
-            .circle.green
-            .circle.brown
-            .circle.gray
+            .circle.green{ data: { type: "Circle", color: "green" } }
+            .circle.brown{ data: { type: "Circle", color: "brown" } }
+            .circle.gray{ data: { type: "Circle", color: "gray" } }
           .rectangles
-            .rectangle.green
-            .rectangle.brown
-            .rectangle.gray
+            .rectangle.green{ data: { type: "Rectangle", color: "green" } }
+            .rectangle.brown{ data: { type: "Rectangle", color: "brown" } }
+            .rectangle.gray{ data: { type: "Rectangle", color: "gray" } }
         #save-garden
           = link_to "Save Shapes", "#", :class =>"button alert"
         %hr

@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20140903150428) do
+ActiveRecord::Schema.define(version: 20140908192234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,17 +19,6 @@ ActiveRecord::Schema.define(version: 20140903150428) do
   create_table "categories", force: true do |t|
     t.string   "name"
     t.boolean  "edible"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "circles", force: true do |t|
-    t.string   "color"
-    t.integer  "width"
-    t.integer  "height"
-    t.integer  "top"
-    t.integer  "left"
-    t.integer  "garden_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,12 +32,13 @@ ActiveRecord::Schema.define(version: 20140903150428) do
     t.datetime "updated_at"
   end
 
-  create_table "rectangles", force: true do |t|
+  create_table "shapes", force: true do |t|
+    t.string   "type"
     t.string   "color"
-    t.integer  "width"
-    t.integer  "height"
     t.integer  "top"
     t.integer  "left"
+    t.integer  "width"
+    t.integer  "height"
     t.integer  "garden_id"
     t.datetime "created_at"
     t.datetime "updated_at"

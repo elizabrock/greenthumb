@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Rectangle, :type => :model do
-  it { should validate_presence_of :garden_id }
-
   context "if the rectangle being created is already populated with values" do
     let(:user){ User.create!(email: "test@test.com", password: "testpassword") }
     let(:garden){ Garden.create!(user_id: user.id) }

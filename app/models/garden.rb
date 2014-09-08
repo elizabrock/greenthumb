@@ -2,7 +2,7 @@ class Garden < ActiveRecord::Base
   before_create :populate_default_values
 
   belongs_to :user
-  has_many :circles
+  has_many :shapes
 
   validates_presence_of :user
 

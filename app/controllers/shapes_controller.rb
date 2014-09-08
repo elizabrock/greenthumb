@@ -2,7 +2,8 @@ class ShapesController < ApplicationController
 
   def create
     @garden = Garden.find(params[:garden_id])
-    @garden.circles.create!(circle_params)
+    shape = @garden.shapes.build(shape_params)
+    shape.save!
 
     respond_to do |format|
       format.json { render json: { message: "Your garden was saved!" }}
@@ -11,7 +12,7 @@ class ShapesController < ApplicationController
 
   protected
 
-  def circle_params
-    params.require(:circle).permit(:height, :width, :top, :left, :color)
+  def shape_params
+    params.require(:shape).permit(:height, :width, :top, :left, :color, :type)
   end
 end
