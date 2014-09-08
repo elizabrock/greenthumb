@@ -21,8 +21,6 @@
             .rectangle.green{ data: { type: "Rectangle", color: "green" } }
             .rectangle.brown{ data: { type: "Rectangle", color: "brown" } }
             .rectangle.gray{ data: { type: "Rectangle", color: "gray" } }
-        #save-garden
-          = link_to "Save Shapes", "#", :class =>"button alert"
         %hr
         = button_to("Delete This Garden", @garden, method: :delete, data: { confirm: "Are you sure?"}, class: "button tiny alert", id: "garden_delete" )
       %section{ role: "tabpanel", "aria-hidden" => "true", class: "content", id: "panel-plants" }

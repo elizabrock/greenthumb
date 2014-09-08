@@ -1,18 +1,22 @@
 feature "Save garden", js: true do
+  before do
+    Capybara.current_driver = :selenium
+  end
+
   after do
     Capybara.use_default_driver
   end
 
   scenario "adding a shape, happy path" do
-    Capybara.current_driver = :selenium
-    @user = Fabricate(:user)
-    login_as @user
-    @garden = Fabricate(:garden, user: @user)
-    visit edit_garden_path(@garden)
+    user = Fabricate(:user)
+    login_as user
+    garden = Fabricate(:garden, user: user)
+
+    visit edit_garden_path(garden)
     element = page.driver.find_css(".circle.green").first.native
-    garden = page.driver.find_css("#garden-plot").first.native
+    destination = page.driver.find_css("#garden-plot").first.native
     page.driver.browser.mouse.down(element)
-    page.driver.browser.mouse.move_to(garden, 5, 5)
+    page.driver.browser.mouse.move_to(destination, 5, 5)
     page.driver.browser.mouse.up()
 
     wait_for_ajax
@@ -22,7 +26,7 @@ feature "Save garden", js: true do
     position['left'].should == 0
 
     circle = Circle.last
-    circle.garden.should == @garden
+    circle.garden.should == garden
     circle.top.should == 0
     circle.left.should == 0
     circle.color.should == Shape::GREEN
@@ -31,17 +35,16 @@ feature "Save garden", js: true do
   end
 
   scenario "adding a shape, in the middle of the plot" do
-    Capybara.current_driver = :selenium
-    @user = Fabricate(:user)
-    login_as @user
-    @garden = Fabricate(:garden, user: @user)
-    visit edit_garden_path(@garden)
+    user = Fabricate(:user)
+    login_as user
+    garden = Fabricate(:garden, user: user)
+    visit edit_garden_path(garden)
 
     element = page.driver.find_css(".rectangle.brown").first.native
-    garden = page.driver.find_css("#garden-plot").first.native
+    destination = page.driver.find_css("#garden-plot").first.native
 
     page.driver.browser.mouse.down(element)
-    page.driver.browser.mouse.move_to(garden, 90, 115) # This is 115 because selenium demands it of us.
+    page.driver.browser.mouse.move_to(destination, 90, 115) # This is 115 because selenium demands it of us.
     page.driver.browser.mouse.up()
 
     wait_for_ajax
@@ -52,7 +55,7 @@ feature "Save garden", js: true do
     position['left'].should == 90
 
     rectangle = Rectangle.last
-    rectangle.garden.should == @garden
+    rectangle.garden.should == garden
     rectangle.top.should == 90
     rectangle.left.should == 90
     rectangle.color.should == Shape::BROWN
@@ -60,11 +63,35 @@ feature "Save garden", js: true do
     rectangle.width.should == 60
   end
 
-  scenario "if shapes exist, they show up when the page loads"
-  scenario "not duplicating when moving"
-  scenario "dragging to a non-grid item"
+  scenario "if shapes exist, they show up when the page loads" do
+    garden = Fabricate(:garden)
+    circle = Fabricate(:circle, garden: garden, color: Shape::BROWN, top: 15, left: 45, width: 60, height: 90)
+    square = Fabricate(:rectangle, garden: garden, color: Shape::GRAY, top: 150, left: 30, width: 45, height: 45)
+
+    login_as garden.user
+    visit edit_garden_path(garden)
+
+    page.driver.evaluate_script("$('#shape_#{circle.id}').css('width');").should == "60px"
+    page.driver.evaluate_script("$('#shape_#{circle.id}').css('height');").should == "90px"
+    page.driver.evaluate_script("$('#shape_#{circle.id}').css('background-color');").should == "rgb(133, 87, 30)"
+
+    page.driver.evaluate_script("$('#shape_#{square.id}').css('width');").should == "45px"
+    page.driver.evaluate_script("$('#shape_#{square.id}').css('height');").should == "45px"
+    page.driver.evaluate_script("$('#shape_#{square.id}').css('background-color');").should == "rgb(204, 204, 204)"
+
+    position = page.driver.evaluate_script("$('#garden-plot').find('#shape_#{circle.id}').position();")
+    position['top'].should == 15
+    position['left'].should == 45
+
+    position = page.driver.evaluate_script("$('#garden-plot').find('#shape_#{square.id}').position();")
+    position['top'].should == 150
+    position['left'].should == 30
+  end
+
   scenario "removing an item from the grid"
   scenario "moving items"
+  scenario "not duplicating when moving"
+  scenario "dragging to a non-grid item"
   scenario "resizing items"
   scenario "overlapping items"
 end

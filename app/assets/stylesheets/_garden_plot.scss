@@ -13,6 +13,9 @@
   background-image: url(image-path('grid-30px.png'));
   border-right: 1px solid #b0b0b0;
   border-bottom: 1px solid #b0b0b0;
+  .in-garden {
+    position: absolute;
+  }
 }
 
 .draggable {

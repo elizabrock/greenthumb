@@ -37,9 +37,9 @@ $(function(){
       if ($.inArray('in-garden', classes) !== -1) {
         console.log('stuff');
       } else {
-        $( '<div class="' + type.toLowerCase() + ' ' + color + ' in-garden" style="top:'+topPosition+'px;left:'+leftPosition+'px;position:absolute"></div>' ).appendTo( this );
+        $( '<div class="' + type.toLowerCase() + ' ' + color + ' in-garden" style="top:'+topPosition+'px;left:'+leftPosition+'px"></div>' ).appendTo( this );
         $('.in-garden').draggable({containment: "#garden-plot", grid: [ 15, 15 ]});
-        $( '.in-garden' ).resizable({
+        $('.in-garden').resizable({
           grid: 30,
           containment: "#garden-plot"
         });
