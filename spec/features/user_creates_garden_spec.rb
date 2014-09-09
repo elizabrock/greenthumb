@@ -24,6 +24,8 @@ feature "User creates a new garden" do
     field_labeled("Garden Name")[:value].should eq("First Garden")
     field_labeled("Height")[:value].should eq("10")
     field_labeled("Width")[:value].should eq("10")
+    expect(page).to have_selector("#shapes-menu")
+    expect(page).to have_selector("#garden")
   end
 
   scenario "when the user already has a garden" do
@@ -34,6 +36,8 @@ feature "User creates a new garden" do
     field_labeled("Garden Name")[:value].should eq("2nd Garden")
     field_labeled("Height")[:value].should eq("10")
     field_labeled("Width")[:value].should eq("10")
+    expect(page).to have_selector("#shapes-menu")
+    expect(page).to have_selector("#garden")
   end
 
   scenario "when the user already has multiple gardens" do
@@ -44,4 +48,6 @@ feature "User creates a new garden" do
     page.should have_content("Your garden has been created!")
     field_labeled("Garden Name")[:value].should eq("3rd Garden")
   end
+
+
 end

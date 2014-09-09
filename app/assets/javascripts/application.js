@@ -12,10 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require foundation/foundation
 //= require foundation/foundation.alert
 //= require foundation/foundation.tab
 //= require garden_edit
+//= require _garden_plot
 //= require_self
+
 
 $(function(){ $(document).foundation(); });

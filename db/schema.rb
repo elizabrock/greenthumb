@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903150428) do
+ActiveRecord::Schema.define(version: 20140908192234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20140903150428) do
     t.integer  "height"
     t.integer  "width"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shapes", force: true do |t|
+    t.string   "type"
+    t.string   "color"
+    t.integer  "top"
+    t.integer  "left"
+    t.integer  "width"
+    t.integer  "height"
+    t.integer  "garden_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

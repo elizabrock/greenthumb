@@ -12,6 +12,19 @@
           = f.input :height
           = f.input :width
           = f.submit "Save Changes"
+        #shapes-menu
+          .circles
+            .out-of-garden.circle.green{ data: { type: "Circle", color: "green" } }
+            .out-of-garden.circle.brown{ data: { type: "Circle", color: "brown" } }
+            .out-of-garden.circle.gray{ data: { type: "Circle", color: "gray" } }
+          .rectangles
+            .out-of-garden.rectangle.green{ data: { type: "Rectangle", color: "green" } }
+            .out-of-garden.rectangle.brown{ data: { type: "Rectangle", color: "brown" } }
+            .out-of-garden.rectangle.gray{ data: { type: "Rectangle", color: "gray" } }
+        %hr
+          %p
+            To delete an existing shape, click on the shape, then click:
+            = link_to "Delete Shape", "#", class: "button tiny secondary", id: "destroy-shape"
         %hr
         = button_to("Delete This Garden", @garden, method: :delete, data: { confirm: "Are you sure?"}, class: "button tiny alert", id: "garden_delete" )
       %section{ role: "tabpanel", "aria-hidden" => "true", class: "content", id: "panel-plants" }

@@ -9,6 +9,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'foundation-rails'
 gem 'haml'
 gem 'jbuilder', '~> 2.0'
+gem 'jquery-ui-rails'
 gem 'jquery-rails'
 gem 'mini_magick'
 gem 'pg'
@@ -23,6 +24,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'rspec-rails'
   gem 'letter_opener'
+  gem 'pry-rails'
 end
 
 group :test do
@@ -33,6 +35,6 @@ group :test do
   gem 'fabrication'
   gem 'launchy'
   gem 'poltergeist'
-  gem 'pry-rails'
+  gem 'selenium-webdriver'
   gem 'shoulda'
 end

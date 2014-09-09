@@ -1,0 +1,66 @@
+.left-menu {
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 10px;
+  float: left;
+  margin-right: 20px;
+}
+
+#garden-plot {
+  display:inline-block;
+  position:relative;
+  background-color: #eee;
+  background-image: url(image-path('grid-30px.png'));
+  border-right: 1px solid #b0b0b0;
+  border-bottom: 1px solid #b0b0b0;
+  .in-garden {
+    position: absolute;
+  }
+}
+
+.draggable {
+  position:absolute;
+  z-index:1;
+}
+
+.active {
+  position: absolute;
+  z-index: 2;
+}
+
+.draggable.green,
+.draggable.brown,
+.draggable.gray {
+  opacity: .8;
+}
+
+.circle {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  display: inline-block;
+}
+
+.rectangle {
+  height: 60px;
+  width: 60px;
+  display: inline-block;
+}
+
+.rectangle, .circle {
+  &.selected {
+    border: 3px solid black;
+  }
+}
+
+.green {
+  background-color: #7BD246 !important;
+}
+
+.brown {
+  background-color: #85571E !important;
+}
+
+.gray {
+  background-color: #ccc !important;
+}
