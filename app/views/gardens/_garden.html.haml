@@ -1,4 +1,4 @@
 %h1= garden.name
 #garden-plot{ :style => "width: #{ garden.width * 12 * 5 }px; height: #{ garden.height * 12 * 5 }px;", "data-id" => "#{garden.id}"  }
   - garden.shapes.each do |shape|
-    %div{ id: "shape_#{shape.id}", class: "#{shape.type.downcase} #{shape.color} in-garden", style: "width: #{shape.width}px; height: #{shape.height}px; top: #{shape.top}px; left: #{shape.left}px" }
+    %div{ id: "shape_#{shape.id}", class: "#{shape.type.downcase} #{shape.color} in-garden", style: "width: #{shape.width}px; height: #{shape.height}px; top: #{shape.top}px; left: #{shape.left}px", "data-shape-id" => shape.id }

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :gardens, except: [:new] do
-    resources :shapes, only: [:create]
+    resources :shapes, only: [:create, :update]
   end
   resources :password_resets, except: [:index, :show, :destroy]
   resource :user, except: [:destroy]

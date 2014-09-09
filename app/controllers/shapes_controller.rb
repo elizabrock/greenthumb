@@ -10,6 +10,17 @@ class ShapesController < ApplicationController
     end
   end
 
+  def update
+    @garden = Garden.find(params[:garden_id])
+    shape = @garden.shapes.find(params[:id])
+    shape.update_attributes(shape_params)
+    shape.save!
+
+    respond_to do |format|
+      format.json { render json: { message: "Your garden was updated!" }}
+    end
+  end
+
   protected
 
   def shape_params
