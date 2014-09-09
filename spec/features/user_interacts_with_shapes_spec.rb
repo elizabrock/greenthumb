@@ -173,7 +173,4 @@ feature "Save garden", js: true do
 
     page.should_not have_css(shape_css)
   end
-
-  scenario "overlapping items"
-
 end
