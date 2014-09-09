@@ -121,8 +121,41 @@ feature "Save garden", js: true do
     position['left'].should == 60
   end
 
-  scenario "dragging to a non-grid item"
+  scenario "resizing items" do
+    garden = Fabricate(:garden)
+    circle = Fabricate(:circle, garden: garden, color: Shape::BROWN, top: 0, left: 0, width: 60, height: 60)
+
+    login_as garden.user
+    visit edit_garden_path(garden)
+
+    page.driver.evaluate_script("$('#shape_#{circle.id}').css('width');").should == "60px"
+    page.driver.evaluate_script("$('#shape_#{circle.id}').css('height');").should == "60px"
+    position = page.driver.evaluate_script("$('#garden-plot').find('#shape_#{circle.id}').position();")
+    position['top'].should == 0
+    position['left'].should == 0
+
+    element = page.driver.find_css("#shape_#{circle.id} .ui-icon-gripsmall-diagonal-se").first.native
+    page.driver.browser.mouse.down(element)
+    page.driver.browser.mouse.move_by(60, 45)# right_by, down_by
+    page.driver.browser.mouse.up()
+
+    page.driver.evaluate_script("$('#shape_#{circle.id}').css('width');").should == "120px"
+    page.driver.evaluate_script("$('#shape_#{circle.id}').css('height');").should == "105px"
+    position = page.driver.evaluate_script("$('#garden-plot').find('#shape_#{circle.id}').position();")
+    position['top'].should == 0
+    position['left'].should == 0
+
+    visit edit_garden_path(garden)
+
+    page.driver.evaluate_script("$('#shape_#{circle.id}').css('width');").should == "120px"
+    page.driver.evaluate_script("$('#shape_#{circle.id}').css('height');").should == "105px"
+    position = page.driver.evaluate_script("$('#garden-plot').find('#shape_#{circle.id}').position();")
+    position['top'].should == 0
+    position['left'].should == 0
+  end
+
   scenario "removing an item from the grid"
-  scenario "resizing items"
+
   scenario "overlapping items"
+
 end
