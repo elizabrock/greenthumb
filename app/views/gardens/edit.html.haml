@@ -22,6 +22,10 @@
             .out-of-garden.rectangle.brown{ data: { type: "Rectangle", color: "brown" } }
             .out-of-garden.rectangle.gray{ data: { type: "Rectangle", color: "gray" } }
         %hr
+          %p
+            To delete an existing shape, click on the shape, then click:
+            = link_to "Delete Shape", "#", class: "button tiny secondary", id: "destroy-shape"
+        %hr
         = button_to("Delete This Garden", @garden, method: :delete, data: { confirm: "Are you sure?"}, class: "button tiny alert", id: "garden_delete" )
       %section{ role: "tabpanel", "aria-hidden" => "true", class: "content", id: "panel-plants" }
         - category_menu_title = @categories.count > 0 ? "Select a Category" : "No plants available"

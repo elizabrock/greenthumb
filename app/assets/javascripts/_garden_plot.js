@@ -25,6 +25,20 @@ $(function(){
     });
   }
 
+  var destroySelectedShape = function(event){
+    event.preventDefault();
+    var $shape = $(".in-garden.selected");
+    var shape_id = $shape.attr("data-shape-id");
+    $shape.remove();
+    $.ajax({
+      type: "POST",
+      url: 'shapes/' + shape_id,
+      data: { "_method": "DELETE"},
+      dataType: 'json'
+    });
+  }
+  $("a#destroy-shape").click(destroySelectedShape);
+
   var applyDraggability = function($objects){
     $objects.draggable({containment: "#garden-plot", grid: [ grid_size, grid_size ]});
     $objects.resizable({
@@ -33,6 +47,10 @@ $(function(){
       stop: function(event, ui){
         updateShape(ui.element);
       }
+    });
+    $objects.click( function(event){
+      $(".selected").removeClass("selected");
+      $(event.target).addClass("selected");
     });
   }
 
@@ -65,6 +83,7 @@ $(function(){
 
         $shape.appendTo(this);
         applyDraggability($shape);
+        $shape.click();
 
         var form_params = { shape: { type: type, top: top, left: left, color: color } };
         $.ajax({

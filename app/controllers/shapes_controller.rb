@@ -21,6 +21,16 @@ class ShapesController < ApplicationController
     end
   end
 
+  def destroy
+    @garden = Garden.find(params[:garden_id])
+    shape = @garden.shapes.find(params[:id])
+    shape.destroy!
+
+    respond_to do |format|
+      format.json { render json: { message: "Your garden was updated!" }}
+    end
+  end
+
   protected
 
   def shape_params

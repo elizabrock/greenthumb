@@ -154,7 +154,25 @@ feature "Save garden", js: true do
     position['left'].should == 0
   end
 
-  scenario "removing an item from the grid"
+  scenario "removing an item from the grid" do
+    garden = Fabricate(:garden)
+    circle = Fabricate(:circle, garden: garden, color: Shape::BROWN, top: 0, left: 0, width: 60, height: 60)
+
+    login_as garden.user
+    visit edit_garden_path(garden)
+
+    shape_css = "#shape_#{circle.id}"
+
+    find(shape_css).click
+    click_on("Delete Shape")
+    wait_for_ajax
+
+    page.should_not have_css(shape_css)
+
+    visit edit_garden_path(garden)
+
+    page.should_not have_css(shape_css)
+  end
 
   scenario "overlapping items"
 
