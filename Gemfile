@@ -21,6 +21,10 @@ gem 'sorcery'
 gem 'spring',        group: :development
 gem 'uglifier', '>= 1.3.0'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'letter_opener'
