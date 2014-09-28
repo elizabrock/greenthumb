@@ -21,10 +21,6 @@ feature "Save garden", js: true do
 
     wait_for_ajax
 
-    position = page.driver.evaluate_script("$('#garden-plot').find('.circle.green').position();")
-    position['top'].should == 0
-    position['left'].should == 0
-
     circle = Circle.last
     circle.garden.should == garden
     circle.top.should == 0
@@ -48,11 +44,6 @@ feature "Save garden", js: true do
     page.driver.browser.mouse.up()
 
     wait_for_ajax
-
-    position = page.driver.evaluate_script("$('#garden-plot').find('.rectangle.brown').position();")
-
-    position['top'].should == 90
-    position['left'].should == 90
 
     rectangle = Rectangle.last
     rectangle.garden.should == garden
