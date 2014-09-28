@@ -11,7 +11,7 @@ $(function(){
   }
 
   var updateShape = function($shape){
-    var shape_id = $shape.attr('data-shape-id');
+    var shape_id = $shape.data('shape-id');
     var top = $shape.css('top');
     var left = $shape.css('left');
     var width = $shape.css('width').replace("px","");
@@ -28,7 +28,7 @@ $(function(){
   var destroySelectedShape = function(event){
     event.preventDefault();
     var $shape = $(".in-garden.selected");
-    var shape_id = $shape.attr("data-shape-id");
+    var shape_id = $shape.data("shape-id");
     $shape.remove();
     $.ajax({
       type: "POST",
@@ -66,14 +66,14 @@ $(function(){
     drop: function( event, ui ) {
 
       var classes = ui.draggable[0].classList;
-      var gardenId = $('#garden-plot').attr('data-id');
+      var gardenId = $('#garden-plot').data('id');
 
       if ($.inArray('in-garden', classes) !== -1) {
         updateShape(ui.draggable);
       } else {
         var $shape = $('<div class="in-garden"></div>');
-        var type = ui.draggable.attr('data-type')
-        var color = ui.draggable.attr('data-color')
+        var type = ui.draggable.data('type')
+        var color = ui.draggable.data('color')
         var top = snapToGrid(ui.position.top, $garden_plot.position().top);
         var left = snapToGrid(ui.position.left, $garden_plot.position().left);
         $shape.css('top', top + 'px');
@@ -91,6 +91,8 @@ $(function(){
           url: 'shapes',
           data: form_params,
           dataType: 'json'
+        }).done(function(response) {
+          $shape.data('shape-id', response.id);
         });
       }
     }

@@ -6,6 +6,7 @@ source 'https://rubygems.org'
 
 gem 'carrierwave'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'figaro'
 gem 'foundation-rails'
 gem 'haml'
 gem 'jbuilder', '~> 2.0'
@@ -20,6 +21,10 @@ gem 'simple_form'
 gem 'sorcery'
 gem 'spring',        group: :development
 gem 'uglifier', '>= 1.3.0'
+
+group :production do
+  gem 'rails_12factor'
+end
 
 group :development, :test do
   gem 'rspec-rails'

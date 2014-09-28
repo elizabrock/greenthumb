@@ -6,7 +6,9 @@ class ShapesController < ApplicationController
     shape.save!
 
     respond_to do |format|
-      format.json { render json: { message: "Your garden was saved!" }}
+      format.json do
+        render json: { message: "Your garden was saved!", id: shape.id }
+      end
     end
   end
 
