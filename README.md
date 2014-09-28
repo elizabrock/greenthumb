@@ -19,6 +19,7 @@ The NSS Cohort 5 Intro to Rails Project
 ## Setup and Configuration
 
 1. _Copy_ config/database.yml.example to config/database.yml.
+1. _Copy_ config/application.yml.example to config/application.yml.
 2. (Optional) Make any changes to database.yml that are necessary for your database setup.
 3. Run `rake db:create:all`
 4. `rake db:migrate`
